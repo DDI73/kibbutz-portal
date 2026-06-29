@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Capitalist Kibbutz · J-Ventures Member Portal</title>
+<style>
+:root{--navy:#0f2f44;--navy2:#143a54;--blue:#29ABE2;--gold:#29ABE2;--gold2:#5bc3ec;--brand:#29ABE2;--brand2:#1B8DBE;--bg:#f3f7fa;--card:#fff;--ink:#0f2f44;--muted:#6b7a90;--line:#e3e8ef;--shadow:0 4px 18px rgba(15,47,68,.08);}
+.jvlogo{display:flex;align-items:center;gap:9px}
+.jvlogo .jvmark{color:var(--brand);flex:none}
+.jvname{font-weight:800;font-size:18px;letter-spacing:.5px;color:var(--brand);line-height:1}
+.jvtag{font-size:8.5px;letter-spacing:3px;color:var(--brand2);font-weight:700;margin-top:2px}
+.jvlogo.big .jvname{font-size:26px}.jvlogo.big .jvtag{font-size:11px;letter-spacing:4.5px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.chip{font-size:12px;font-weight:600;padding:6px 13px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
+.chip:hover{border-color:var(--brand);color:var(--brand)}
+.chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.simrow{display:flex;align-items:center;gap:10px;padding:8px;border:1px solid var(--line);border-radius:10px;margin-top:8px;cursor:pointer}
+.simrow:hover{background:#f3f7fa}.simrow .avatar{width:34px;height:34px;font-size:12px}
+.simrow .sn{font-size:13px;font-weight:600}.simrow .sp{font-size:11px;color:var(--muted)}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:var(--blue);text-decoration:none}.hidden{display:none!important}
+#login{position:fixed;inset:0;background:linear-gradient(135deg,#29ABE2,#1B8DBE 55%,#15689c);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
+.login-card{background:var(--card);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.35);width:100%;max-width:400px;padding:38px 34px;text-align:center}
+.crest{width:62px;height:62px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-weight:800;font-size:26px;color:var(--navy)}
+.login-card h1{font-size:20px;margin:6px 0 2px;letter-spacing:.3px}.login-card .sub{color:var(--muted);font-size:13px;margin-bottom:22px}
+.field{text-align:left;margin-bottom:14px}.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.field input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:14px;outline:none}
+.field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(42,111,151,.12)}
+.btn{border:none;cursor:pointer;font-weight:600;border-radius:10px;font-size:14px}
+.btn-primary{background:var(--navy);color:#fff;padding:12px 18px;width:100%}.btn-primary:hover{background:var(--navy2)}
+.demo-note{margin-top:16px;font-size:11.5px;color:var(--muted);background:#f7f9fc;border:1px dashed var(--line);border-radius:10px;padding:9px 11px}
+header.top{position:sticky;top:0;z-index:20;background:#fff;color:var(--ink);display:flex;align-items:center;gap:18px;padding:9px 22px;min-height:62px;border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(15,47,68,.05)}
+nav.tabs{display:flex;gap:4px;margin-left:10px;flex:1;flex-wrap:wrap}
+nav.tabs button{background:transparent;border:none;color:var(--navy);padding:10px 17px;border-radius:9px;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.2px}
+nav.tabs button.active{background:var(--brand);color:#fff;box-shadow:0 3px 10px rgba(41,171,226,.35)}nav.tabs button:hover{background:rgba(41,171,226,.12);color:var(--brand)}
+nav.tabs button.active:hover{color:#fff}
+.submitbtn{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:none;padding:11px 20px;border-radius:11px;font-weight:800;font-size:15px;cursor:pointer;box-shadow:0 4px 14px rgba(41,171,226,.45)}
+.submitbtn:hover{filter:brightness(1.05)}
+.bbtn-ghost{background:#fff;border:1px solid var(--line);color:var(--navy);padding:11px 16px;border-radius:11px;font-weight:700;font-size:14px;cursor:pointer}
+.bbtn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+.whoami{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy)}
+.logout{color:var(--navy) !important;border:1px solid var(--line) !important}
+.whoami .av{width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.aibox{background:linear-gradient(135deg,#eaf7fd,#f5fbfe);border:1px solid #cdeafa;border-radius:16px;padding:16px 18px;margin-bottom:16px}
+.aibox .ailabel{font-size:12px;font-weight:700;color:var(--brand2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.airow{display:flex;gap:9px}.airow input{flex:1;padding:11px 14px;border:1px solid #bfe3f6;border-radius:10px;font-size:14px;outline:none}
+.airow input:focus{border-color:var(--brand)}
+.airow button{background:var(--brand);color:#fff;border:none;padding:0 18px;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px}
+.aihints{margin-top:8px;font-size:11.5px;color:var(--muted)}.aihints b{color:var(--brand2);cursor:pointer;font-weight:600}
+.airesults{margin-top:14px}.aires-head{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px;display:flex;justify-content:space-between}
+.aiwhy{font-size:11px;color:var(--brand2);margin-top:4px}
+.matchgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:6px}
+.matchcard{background:#fff;border:1px solid #e2dbf3;border-radius:12px;padding:12px;text-align:center}
+.matchpair{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px}
+.matchpair .avatar{width:40px;height:40px;font-size:14px}.matchpair .vs{color:#7f77dd;font-weight:800}
+.matchnames{font-size:13.5px;font-weight:700;line-height:1.3}.matchwhy{font-size:11.5px;color:var(--muted);margin:4px 0 9px;min-height:28px}
+.matchcard button{background:#534ab7;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-weight:700;font-size:12px;cursor:pointer}
+.logout{background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:12px}
+main{max-width:1180px;margin:0 auto;padding:24px 22px 60px}
+.page-head{margin:8px 0 18px}.page-head h2{margin:0 0 4px;font-size:24px}.page-head p{margin:0;color:var(--muted);font-size:14px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px;align-items:center}
+.filters input[type=text],.filters select{padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:13px;background:#fff;outline:none}
+.filters input[type=text]{flex:1;min-width:200px}.filters select:focus,.filters input:focus{border-color:var(--blue)}
+.count{font-size:13px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);cursor:pointer;transition:transform .12s,box-shadow .12s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(11,37,69,.14)}
+.card .row1{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.avatar{width:48px;height:48px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px}
+.card h3{margin:0;font-size:16px;line-height:1.2}.card .pos{font-size:12px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.card .title{font-size:13px;color:var(--muted);line-height:1.45;margin:2px 0 10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .curtitle{font-size:13px;color:var(--ink);font-weight:600;line-height:1.35;margin:1px 0 1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .fmrtitle{font-size:12px;color:var(--muted);line-height:1.3;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.card .cos,.mbody .cos{font-size:12.5px;color:var(--ink);font-weight:700;margin:1px 0 9px;display:flex;flex-wrap:wrap;gap:5px 11px;align-items:center;line-height:1.3}
+.cos .colab{display:inline-flex;align-items:center;gap:5px}
+.cos img{height:15px;width:15px;border-radius:3px;object-fit:contain;background:#fff;border:1px solid var(--line)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.tag{font-size:11px;padding:3px 8px;border-radius:20px;background:#eef2f8;color:var(--navy2);font-weight:600}
+.tag.fund{background:#fdf6e3;color:#8a6d10}.tag.loc{background:#eafaf1;color:#1d7a4d}
+.meta-line{font-size:12px;color:var(--muted);margin-top:8px}
+.modal-bg{position:fixed;inset:0;background:rgba(11,37,69,.55);display:flex;align-items:center;justify-content:center;z-index:40;padding:20px}
+.modal{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.modal .mhead{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:24px;display:flex;gap:16px;align-items:center;position:relative}
+.modal .mhead .avatar{width:64px;height:64px;font-size:22px;border:2px solid rgba(255,255,255,.5)}
+.modal .mhead h3{margin:0;font-size:21px}.modal .mhead .pos{color:var(--gold2);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+.modal .close{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer}
+.modal .mbody{padding:22px 24px}.modal .mbody h4{margin:16px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.modal .mbody p{margin:0;font-size:14px;line-height:1.55}
+.connect{margin-top:20px;display:flex;gap:10px}
+.connect a,.connect button{flex:1;text-align:center;padding:10px;border-radius:9px;font-weight:600;font-size:13px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--navy)}
+.connect .primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.news-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:14px;display:flex;gap:16px}
+.news-item .date{flex:none;width:54px;text-align:center;background:var(--navy);color:#fff;border-radius:10px;padding:8px 0;font-weight:700}
+.news-item .date small{display:block;font-size:10px;font-weight:600;color:var(--gold2);text-transform:uppercase}
+.news-item h3{margin:0 0 4px;font-size:16px}.news-item p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+.news-item .pill{display:inline-block;font-size:11px;font-weight:700;color:var(--blue);background:#eaf2f8;border-radius:20px;padding:2px 9px;margin-bottom:6px}
+.banner{border-radius:14px;padding:16px 18px;margin-bottom:18px;font-size:13.5px;display:flex;gap:10px;align-items:flex-start}
+.banner.gold{background:#fdf6e3;border:1px solid #efe2b3;color:#7a5f08}.banner.blue{background:#eaf2f8;border:1px solid #cfe2ef;color:#1b4a66}
+.celebr{background:linear-gradient(135deg,#fdf2f8,#fef6fb);border:1px solid #f3d7e6;border-radius:14px;padding:11px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.celebr-h{font-weight:800;color:#9a3b6e;margin-right:6px;white-space:nowrap}
+.celebr .celeb{font-size:13px;margin-right:14px;white-space:nowrap;color:var(--ink)}
+.banner b{display:block;margin-bottom:2px}
+.addbtn{background:var(--gold);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px}
+.wabtn{background:#25D366;color:#fff;border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px;display:inline-block}
+.lpcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:12px;display:flex;align-items:center;gap:16px}
+.lpcard.locked{opacity:.6}
+.lpcard .lpicon{width:46px;height:46px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;font-size:20px;background:#eaf7fd;color:var(--brand)}
+.lpcard.locked .lpicon{background:#f0f1f4;color:#9aa6b5}
+.lpbtn{margin-left:auto;background:var(--brand);color:#fff;border:none;padding:9px 16px;border-radius:9px;font-weight:700;cursor:pointer;font-size:13px;white-space:nowrap}
+.lpbtn.lock{background:#eef0f3;color:#9aa6b5;cursor:not-allowed}
+.fundtag{font-size:11px;font-weight:700;border-radius:20px;padding:2px 9px}
+.cause-h{display:flex;align-items:center;gap:10px;margin:22px 0 10px;font-size:15px;font-weight:700;color:var(--navy)}
+.cause-h .dot{width:12px;height:12px;border-radius:50%}
+.statbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;box-shadow:var(--shadow);text-align:center;flex:1;min-width:90px}
+.stat b{display:block;font-size:20px;color:var(--navy)}.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+#loungeToggle{position:fixed;bottom:22px;right:22px;z-index:30;background:var(--brand);color:#fff;border:none;border-radius:30px;padding:12px 20px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 20px rgba(41,171,226,.45)}
+#loungeDock{position:fixed;top:104px;right:0;bottom:0;width:340px;max-width:92vw;background:#fff;border-left:1px solid var(--line);box-shadow:-8px 0 30px rgba(15,47,68,.14);z-index:32;display:flex;flex-direction:column;transform:translateX(106%);transition:transform .25s ease}
+#loungeDock.open{transform:none}
+.newsbar{position:static;z-index:19;overflow:hidden;background:#0f2f44;color:#fff;height:36px;display:flex;align-items:center;white-space:nowrap}
+.newsbar .label{background:var(--brand);color:#fff;font-weight:800;font-size:11px;letter-spacing:.5px;padding:0 12px;align-self:stretch;display:flex;align-items:center;flex:none;text-transform:uppercase}
+.newsbar .track{display:inline-flex;gap:36px;padding-left:24px;animation:ticker 45s linear infinite}
+.newsbar:hover .track{animation-play-state:paused}
+.newsbar .ti{font-size:13px;color:#dbe7f0}.newsbar .ti b{color:var(--gold2);font-weight:700}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#app.lounge-collapsed #loungeDock{transform:translateX(106%)}
+#app.lounge-collapsed #loungeToggle{display:block}
+@media(min-width:1100px){main{margin-left:0;margin-right:360px}.newsbar,.footer-note{margin-right:340px}#loungeToggle{display:none}#loungeDock{transform:none}
+ #app.lounge-collapsed main{margin-left:auto;margin-right:auto}#app.lounge-collapsed .newsbar,#app.lounge-collapsed .footer-note{margin-right:0}
+ #app.lounge-collapsed #loungeToggle{display:block}#app.lounge-collapsed #loungeDock{transform:translateX(106%)}}
+.ldock-wa{background:#25D366;color:#fff;border:none;border-radius:7px;padding:5px 9px;font-size:11px;font-weight:700;cursor:pointer;text-decoration:none}
+.ldock-head{background:var(--navy);color:#fff;padding:11px 14px;display:flex;align-items:center;gap:9px}
+.ldock-head b{flex:1;font-size:14px}
+.ldock-head select{background:rgba(255,255,255,.16);color:#fff;border:none;border-radius:7px;padding:5px 8px;font-size:12px;max-width:130px}
+.ldock-head select option{color:#111}
+.ldock-close{background:transparent;border:none;color:#fff;font-size:20px;cursor:pointer;line-height:1}
+.chatmsgs{flex:1;overflow:auto;padding:14px}
+.msg{display:flex;gap:10px;margin-bottom:14px}
+.msg .avatar{width:34px;height:34px;font-size:12px}
+.msg .mb{flex:1}.msg .mn{font-size:13px;font-weight:700}.msg .mn span{font-weight:500;color:var(--muted);font-size:11px;margin-left:6px}
+.msg .mt{font-size:13.5px;color:var(--ink);line-height:1.4;margin-top:1px}
+.chatinput{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chatinput input{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font-size:14px;outline:none}
+.chatinput button{background:var(--brand);color:#fff;border:none;padding:0 18px;border-radius:9px;font-weight:700;cursor:pointer}
+.footer-note{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
+@media(max-width:600px){.chanlist{width:130px}}
+@media(max-width:600px){.count{width:100%;margin-left:0}header.top{height:auto;padding:8px 14px;flex-wrap:wrap}}
+#loungeToggle,#loungeDock{display:none!important}
+@media(min-width:1100px){main{margin-right:auto!important}.newsbar,.footer-note{margin-right:0!important}}
+.lng-wrap{display:grid;grid-template-columns:210px 1fr 280px;gap:14px;align-items:start}
+@media(max-width:1000px){.lng-wrap{grid-template-columns:1fr}.lng-left,.lng-right{display:none}}
+.lng-left,.lng-center,.lng-right{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.lng-left{padding:12px}
+.lng-brand{display:flex;gap:9px;align-items:center;padding:4px 4px 12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.lng-brand .avatar{width:34px;height:34px;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;border-radius:9px}
+.lng-brand b{display:block;font-size:14px;color:var(--navy)}.lng-brand span{font-size:9px;letter-spacing:1.4px;color:var(--muted);font-weight:700}
+.lng-chans{display:flex;flex-direction:column;gap:3px}
+.lng-chan{text-align:left;border:none;background:none;padding:9px 11px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--navy);cursor:pointer}
+.lng-chan:hover{background:rgba(41,171,226,.1)}
+.lng-chan.on{background:var(--brand);color:#fff}
+.lng-new{margin-top:12px;width:100%;background:var(--brand);color:#fff;border:none;border-radius:10px;padding:10px;font-weight:700;cursor:pointer}
+.lng-center{display:flex;flex-direction:column;min-height:560px;overflow:hidden}
+.lng-chead{display:flex;gap:10px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--line)}
+.lng-chead .avatar{width:38px;height:38px;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.lng-chead b{display:block;font-size:15px;color:var(--navy)}.lng-chead span{font-size:12px;color:var(--muted)}
+.lng-thread{flex:1;overflow-y:auto;max-height:520px;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
+.lng-date{align-self:center;font-size:11px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:3px 12px;border-radius:20px}
+.lng-row{display:flex;gap:9px;align-items:flex-end;max-width:82%}
+.lng-row.me{align-self:flex-end}
+.lng-av{width:30px;height:30px;font-size:11px;flex:none;position:relative;display:flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;font-weight:700}
+.lng-b{background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 13px}
+.lng-b.me{background:var(--brand);color:#fff;border-color:var(--brand)}
+.lng-meta{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:2px}.lng-b.me .lng-meta{color:#eaf6fd}
+.lng-meta span{font-weight:500;color:var(--muted);margin-left:5px}.lng-b.me .lng-meta span{color:#cfeafa}
+.lng-tx{font-size:13.5px;line-height:1.45}
+.lng-compose{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.lng-compose input{flex:1;border:1px solid var(--line);border-radius:22px;padding:10px 16px;font-size:13.5px}
+.lng-compose button{background:var(--brand);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:15px;cursor:pointer;flex:none}
+.lng-right{padding:14px}
+.lng-rsec{margin-bottom:16px}
+.lng-rsec h4{margin:0 0 9px;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+.lng-on{display:flex;gap:9px;align-items:center;margin-bottom:9px}
+.lng-on .avatar{width:34px;height:34px;font-size:12px;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:50%;position:relative;flex:none}
+.lng-on b{display:block;font-size:13px;color:var(--navy)}.lng-on span{font-size:11px;color:var(--muted)}
+.lng-on .dot,.lng-av .dot{position:absolute;right:-1px;bottom:-1px;width:9px;height:9px;border-radius:50%;background:#37a85b;border:2px solid #fff}
+.lng-tags{display:flex;flex-wrap:wrap;gap:6px}
+.lng-tag{background:#eaf7fd;color:var(--brand2);border:1px solid #cdeafa;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:600}
+.lng-ev{border:1px solid var(--line);border-radius:11px;padding:11px;margin-bottom:9px}
+.lng-ev-when{font-size:10px;font-weight:800;color:var(--gold);letter-spacing:.5px}
+.lng-ev-t{font-size:13.5px;font-weight:700;color:var(--navy);margin:3px 0}
+.lng-ev-by{font-size:11.5px;color:var(--muted)}
+.lng-ev-att{font-size:11px;color:var(--brand2);margin-top:5px;font-weight:600}
+.net-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.net-grid{grid-template-columns:1fr}}
+.net-card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px}
+.net-card h3{margin:0 0 2px;font-size:16px;color:var(--navy)}
+.net-sub{margin:0 0 11px;font-size:12.5px;color:var(--muted)}
+.net-card input,.net-card select{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:13px;margin-bottom:8px;background:#fff}
+.net-row{display:flex;gap:8px}.net-row select{flex:1}
+.net-out{margin-top:4px}
+.net-item{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.net-item .avatar{width:38px;height:38px;font-size:13px;flex:none;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.net-item b{font-size:13.5px;color:var(--navy)}
+.net-item .nm-why{font-size:12px;color:var(--muted)}
+.net-item .nm-act{margin-left:auto}
+.net-item .nm-act button{background:var(--brand);color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.net-count{font-size:12.5px;font-weight:700;color:var(--brand2);margin:4px 0 2px}
+.net-tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+</style></head><body>
+<div id="login"><div class="login-card">
+<div class="jvlogo big" style="justify-content:center;margin-bottom:14px"><svg class="jvmark" width="40" height="46" viewBox="0 0 30 34" fill="currentColor"><rect x="2" y="3" width="26" height="5" rx="2.5"/><rect x="7" y="11" width="21" height="5" rx="2.5"/><rect x="2" y="19" width="26" height="5" rx="2.5"/><rect x="9" y="27" width="13" height="5" rx="2.5"/></svg><div><div class="jvname">J-VENTURES</div><div class="jvtag">STRONGER TOGETHER</div></div></div>
+<h1 style="color:var(--navy)">Capitalist Kibbutz</h1><div class="sub">Member Portal</div>
+<button onclick="login()" style="width:100%;background:#fff;border:1px solid var(--line);color:var(--ink);padding:11px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:14px;cursor:pointer">
+<svg width="17" height="17" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5h-1.9V20H24v8h11.3C33.7 32.4 29.3 35.5 24 35.5 17.6 35.5 12.5 30.4 12.5 24S17.6 12.5 24 12.5c3 0 5.7 1.1 7.8 3l5.7-5.7C33.9 6.5 29.2 4.5 24 4.5 13.2 4.5 4.5 13.2 4.5 24S13.2 43.5 24 43.5c10 0 19-7.3 19-19.5 0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 12.5 24 12.5c3 0 5.7 1.1 7.8 3l5.7-5.7C33.9 6.5 29.2 4.5 24 4.5 16.3 4.5 9.7 8.9 6.3 14.7z"/><path fill="#4CAF50" d="M24 43.5c5.2 0 9.8-2 13.3-5.2l-6.1-5.2c-2 1.5-4.6 2.4-7.2 2.4-5.3 0-9.7-3.1-11.3-7.5l-6.5 5C9.6 39 16.2 43.5 24 43.5z"/><path fill="#1976D2" d="M43.6 20.5H24v8h11.3c-.8 2.2-2.2 4-4.1 5.3l6.1 5.2C40.9 36.6 43.5 31 43.5 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+Continue with Google</button>
+<div style="text-align:center;color:var(--muted);font-size:12px;margin:13px 0 4px">or sign in with email</div>
+<div class="field"><label>Email</label><input id="email" type="email" placeholder="you@example.com"/></div>
+<div class="field"><label>Password</label><input id="pwd" type="password" placeholder="********"/></div>
+<div class="field"><label>Demo LP view (controls LP Reports only &mdash; Approvals/admin is granted by your email)</label><select id="acc" style="width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:14px">
+<option value="all">GP / Team &mdash; sees Fund II + Fund III</option>
+<option value="f2">Fund II LP &mdash; sees Fund II only</option>
+<option value="f3">Fund III LP &mdash; sees Fund III only</option>
+<option value="none">Member &mdash; no LP access</option></select></div>
+<button class="btn btn-primary" onclick="login()">Enter the Kibbutz</button>
+<div style="margin-top:14px;font-size:13px;color:var(--muted)">First time here? <a href="#" onclick="openRegister();return false;" style="color:var(--brand);font-weight:600">Request access &rarr;</a></div>
+<div class="demo-note">&#128274; <b>Prototype demo gate.</b> Any email + password works here. In the live site, LPs register, the team verifies their fund(s), and each gets a private login (Wix Members Area). Fund-level visibility is set by the team, not self-selected.</div>
+</div></div>
+<div id="app" class="hidden">
+<header class="top"><div class="jvlogo"><svg class="jvmark" width="28" height="32" viewBox="0 0 30 34" fill="currentColor"><rect x="2" y="3" width="26" height="5" rx="2.5"/><rect x="7" y="11" width="21" height="5" rx="2.5"/><rect x="2" y="19" width="26" height="5" rx="2.5"/><rect x="9" y="27" width="13" height="5" rx="2.5"/></svg><div><div class="jvname">J-VENTURES</div><div class="jvtag">STRONGER TOGETHER</div></div></div>
+<nav class="tabs">
+<button data-tab="members" class="active" onclick="go('members')">Members</button>
+<button data-tab="team" onclick="go('team')">Team</button>
+<button data-tab="conn" onclick="go('conn')">Connections</button>
+<button data-tab="network" onclick="go('network')">Network</button>
+<button data-tab="ngos" onclick="go('ngos')">NGOs</button>
+<button data-tab="jklub" onclick="go('jklub')">J-KLUB</button>
+<button data-tab="lounge" onclick="go('lounge')">Lounge</button>
+<button data-tab="jobs" onclick="go('jobs')">Job Board</button>
+<button data-tab="lp" onclick="go('lp')">LP Reports</button>
+<button data-tab="news" onclick="go('news')">News</button>
+<button data-tab="mnews" onclick="go('mnews')">Member News</button>
+<button data-tab="approvals" id="navApprovals" onclick="go('approvals')" style="display:none">Approvals</button></nav>
+<div class="whoami">
+<button class="submitbtn" onclick="openDeal()">+ Submit a company</button>
+<div class="av" id="meAv">M</div><span id="meName">Member</span>
+<button class="logout" onclick="openEdit()" style="border-color:var(--brand);color:var(--brand)">Edit my profile</button>
+<button class="logout" onclick="logout()">Log out</button></div></header>
+<div class="newsbar" id="newsBar"></div>
+<main>
+<section id="members">
+<div class="page-head" style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap"><div style="flex:1;min-width:240px"><h2>Member Directory</h2><p style="margin:0">500+ global Jewish business leaders. Ask in plain English, or filter by sector, fund, position, or company.</p></div>
+<div style="display:flex;gap:8px;align-self:center;flex-wrap:wrap"><button class="bbtn-ghost" onclick="shareSimcha()">&#127881; Share good news</button><button class="submitbtn" onclick="openDeal()">+ Submit a company</button></div></div>
+<div class="aibox">
+<div class="ailabel">&#10024; AI Concierge &mdash; ask the network</div>
+<div class="airow"><input id="aiQ" placeholder="e.g. cybersecurity founder in the Bay Area who can intro me to Sequoia" onkeydown="if(event.key==='Enter')aiSearch()"/><button onclick="aiSearch()">Find</button></div>
+<div class="aihints">Try: <b onclick="aiAsk('AI investors who can help me raise a seed round')">AI investors for a seed round</b> &middot; <b onclick="aiAsk('healthcare founders in Israel')">healthcare founders in Israel</b> &middot; <b onclick="aiAsk('someone who exited a cybersecurity company')">cyber exits</b></div>
+<div class="airesults" id="aiResults"></div>
+</div>
+<div class="aibox" style="background:linear-gradient(135deg,#f4f1fb,#faf8fe);border-color:#ddd3f3">
+<div class="ailabel" style="color:#534ab7">&#129309; AI Matchmaker &mdash; people you should meet</div>
+<div id="matchSub" style="font-size:12px;color:var(--muted);margin:-2px 0 8px">Private suggestions for you</div>
+<div class="matchgrid" id="matchWrap"></div>
+<div style="margin-top:10px"><button class="bbtn-ghost" onclick="renderMatches(true)">&#128260; Suggest more intros</button></div>
+</div>
+<div class="statbar" id="statbar"></div>
+<div class="chips" id="mChips"></div>
+<div class="filters">
+<input type="text" id="mSearch" placeholder="Search name, company, title, fund..." oninput="renderMembers()"/>
+<select id="fSector" onchange="renderMembers()"><option value="">All Sectors</option></select>
+<select id="fPosition" onchange="renderMembers()"><option value="">All Positions</option></select>
+<select id="fFund" onchange="renderMembers()"><option value="">All Funds / VCs</option></select>
+<select id="fCompany" onchange="renderMembers()"><option value="">All Companies</option></select>
+<span class="count" id="mCount"></span></div>
+<div class="grid" id="mGrid"></div>
+<div id="mMore" style="text-align:center;margin-top:20px"></div>
+</section>
+<section id="conn" class="hidden">
+<div class="page-head"><h2>Connection Web</h2><p>Real connections only &mdash; people who worked at the same company or share a fund. Derived from member bios.</p></div>
+<div class="banner blue"><span>&#128279;</span><div><b>How this works.</b> Edges mean a genuine shared affiliation: the same company (e.g. both ex-Intel) or the same fund. No sector-only links. Pick a person, then click any node to re-center the web.
+<input id="connPick" list="memNames" placeholder="Center on a member..." style="margin-top:8px;display:block;width:100%;max-width:340px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:13px" onchange="pickConn()"/>
+<datalist id="memNames"></datalist></div>
+<div style="background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
+<svg id="connSvg" viewBox="0 0 860 560" style="width:100%;height:auto;display:block"></svg></div>
+<div id="connList" style="margin-top:14px"></div></section>
+<section id="team" class="hidden">
+<div class="page-head"><h2>The J-Ventures Team</h2><p>The people who run the fund and steward the community.</p></div>
+<div id="teamWrap"></div></section>
+<section id="ngos" class="hidden">
+<div class="page-head"><h2>NGO Directory</h2><p>The causes our members champion &mdash; organized by goal. Find a cause, find a way to help.</p></div>
+<div class="banner gold"><span>&#128154;</span><div><b>Powered by member submissions.</b> Connects to the live Airtable NGO Directory. New NGOs members add through the form appear here automatically.
+<button class="addbtn" style="margin-top:8px" onclick="alert('In the live site this opens the NGO submission form.')">+ Add an NGO</button></div></div>
+<div class="filters"><input type="text" id="nSearch" placeholder="Search NGOs..." oninput="renderNGOs()"/>
+<select id="nCause" onchange="renderNGOs()"><option value="">All Causes</option></select><span class="count" id="nCount"></span></div>
+<div id="nWrap"></div></section>
+<section id="jklub" class="hidden">
+<div class="page-head"><h2>J-KLUB <span style="font-size:14px;color:var(--gold);font-weight:700">&middot; the next generation</span></h2>
+<p>For members' kids, under 40 &mdash; to meet each other, build friendships, collaborate, and connect across the community.</p></div>
+<div class="banner blue"><span>&#128101;</span><div><b>Self-serve join via a shareable link.</b> Members forward one link to their kids; they fill it out themselves &mdash; no gatekeeping. The form collects name, age, city, field, what they're open to, <b>LinkedIn</b>, their <b>parent (member)</b>, and <b>J-Fellows alumni cohort (1&ndash;5)</b>.
+<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<button class="addbtn" style="background:var(--blue);color:#fff" onclick="copyJoin()">&#128279; Copy J-KLUB join link</button>
+<a class="wabtn" href="https://chat.whatsapp.com/REPLACE-WITH-INVITE" target="_blank">&#128241; J-KLUB WhatsApp group</a>
+<span id="joinMsg" style="font-size:12px;color:var(--brand2)"></span></div></div></div>
+<div class="filters"><input type="text" id="kSearch" placeholder="Search by name, field, city..." oninput="renderKlub()"/>
+<select id="kField" onchange="renderKlub()"><option value="">All Fields</option></select>
+<select id="kCity" onchange="renderKlub()"><option value="">All Cities</option></select>
+<select id="kCohort" onchange="renderKlub()"><option value="">All J-Fellows Cohorts</option><option value="1">Cohort 1</option><option value="2">Cohort 2</option><option value="3">Cohort 3</option><option value="4">Cohort 4</option><option value="5">Cohort 5</option></select>
+<span class="count" id="kCount"></span></div>
+<div class="grid" id="kGrid"></div></section>
+<section id="jobs" class="hidden">
+<div class="page-head"><h2>Job Board <span style="font-size:14px;color:var(--gold);font-weight:700">&middot; J-Ventures &amp; beyond</span></h2>
+<p>Roles across the portfolio and the wider Kibbutz network. Members and their kids get a warm intro.</p></div>
+<div class="banner gold"><span>&#128188;</span><div><b>Post a role.</b> Members can list open positions at their company &mdash; portfolio or not. Sample listings shown below.
+<button class="addbtn" style="margin-top:8px" onclick="alert('In the live site this opens the post-a-job form.')">+ Post a job</button></div></div>
+<div class="filters"><input type="text" id="jSearch" placeholder="Search role, company, skill..." oninput="renderJobs()"/>
+<select id="jSource" onchange="renderJobs()"><option value="">All Sources</option></select>
+<select id="jType" onchange="renderJobs()"><option value="">All Types</option></select>
+<select id="jLoc" onchange="renderJobs()"><option value="">All Locations</option></select><span class="count" id="jCount"></span></div>
+<div class="grid" id="jGrid"></div></section>
+<section id="lp" class="hidden">
+<div class="page-head"><h2>LP Reports <span style="font-size:14px;color:var(--gold);font-weight:700">&middot; confidential</span></h2><p id="lpAccessNote">Your fund reports. Visibility is tied to your LP account.</p></div>
+<div class="banner gold"><span>&#128274;</span><div><b>Fund-level access control.</b> Fund II LPs see only Fund II; Fund III LPs see only Fund III; GP/team see both. In this prototype your access was set at login &mdash; in production it's bound to each LP's account (Wix Members role or Airtable entitlement).</div></div>
+<div id="lpWrap"></div></section>
+<section id="approvals" class="hidden">
+<div class="page-head"><h2>Access Approvals <span style="font-size:14px;color:var(--gold);font-weight:700">&middot; admin</span></h2><p>Review LP registration requests. Verify their fund(s), then approve to send a login link.</p></div>
+<div class="banner gold"><span>&#9989;</span><div><b>How approval works.</b> Each request appears here. Confirm which funds the LP is actually in (tick the boxes), then <b>Approve</b>. In production that assigns their fund roles and sends a Wix Members invite &mdash; the candidate gets an email/WhatsApp with a <b>private link to set their password</b>. Until approved, they can't log in.</div></div>
+<div id="apWrap"></div></section>
+<section id="mnews" class="hidden">
+<div class="page-head"><h2>Member News</h2><p>What our members are up to &mdash; press, talks, awards, board seats, launches.</p></div>
+<div class="banner gold"><span>&#128240;</span><div><b>Compliant news monitoring (not LinkedIn).</b> A weekly agent searches public news/press for each member and posts notable items here &mdash; it does not scrape LinkedIn. Sample items shown below.</div></div>
+<div class="filters"><input type="text" id="mnSearch" placeholder="Search members or topics..." oninput="renderMNews()"/>
+<select id="mnType" onchange="renderMNews()"><option value="">All Types</option></select><span class="count" id="mnCount"></span></div>
+<div id="mnWrap"></div></section>
+<section id="news" class="hidden">
+<div class="page-head"><h2>Recent News</h2><p>What's happening across the Kibbutz &mdash; funds, portfolio, events, and people.</p></div>
+<div class="banner blue"><span>&#128240;</span><div><b>Sample feed.</b> In the live site this is editable by the J-Ventures team.</div></div>
+<div id="newsWrap"></div></section>
+<section id="lounge" class="hidden">
+<div class="page-head"><h2>The Lounge</h2><p>Members-only conversation &mdash; channels, deals, and community.</p></div>
+<div class="lng-wrap">
+ <aside class="lng-left">
+  <div class="lng-brand"><div class="avatar" style="background:var(--brand)">&#9733;</div><div><b>Kibbutz</b><span>VENTURE COMMUNITY</span></div></div>
+  <div id="lngChannels" class="lng-chans"></div>
+  <button class="lng-new" onclick="document.getElementById('lngBox').focus()">+ New Discussion</button>
+ </aside>
+ <div class="lng-center">
+  <div class="lng-chead"><div class="avatar" style="background:#2a6f97">L</div><div><b id="lngChanName"># general</b><span>General discussion for all J-Ventures members</span></div></div>
+  <div class="lng-thread" id="lngThread"></div>
+  <div class="lng-compose"><input id="lngBox" placeholder="Share your thoughts with the community..." onkeydown="if(event.key==='Enter')sendLng()"/><button onclick="sendLng()" title="Send">&#10148;</button></div>
+ </div>
+ <aside class="lng-right">
+  <div class="lng-rsec"><h4>Online now</h4><div id="lngOnline"></div></div>
+  <div class="lng-rsec"><h4>Trending topics</h4><div id="lngTrend" class="lng-tags"></div></div>
+  <div class="lng-rsec"><h4>Member events</h4><div id="lngEvents"></div></div>
+ </aside>
+</div></section>
+<section id="network" class="hidden">
+<div class="page-head"><h2>Community Network <span style="font-size:14px;color:var(--gold);font-weight:700">&middot; powered by your connections</span></h2>
+<p>Turn the community's real relationships into warm intros, DD pods, and sourcing. Privacy-first &mdash; raw contacts are never shown.</p></div>
+<div class="banner blue"><span>&#128279;</span><div><b>Opt-in import.</b> Each member uploads their own LinkedIn <i>Connections.csv</i> (LinkedIn &rarr; Settings &rarr; Get a copy of your data). We never expose anyone's contacts &mdash; the AI shows only &ldquo;<b>N members can reach X</b>,&rdquo; and the connector approves each intro.
+<button class="addbtn" style="margin-top:8px" onclick="alert('In the live site this opens the consented CSV upload, stored privately in Airtable. Until then, the panels below run on shared work history / funds as a stand-in graph.')">&#11014; Upload my LinkedIn connections</button></div></div>
+<div class="net-grid">
+ <div class="net-card"><h3>&#129309; Warm-intro finder</h3><p class="net-sub">Who in the Kibbutz can introduce me to a person or company?</p>
+  <input id="introQ" placeholder="e.g. Stripe, NVIDIA, or a member's name" oninput="findIntro()"/>
+  <div id="introOut" class="net-out"></div></div>
+ <div class="net-card"><h3>&#128269; Help / DD a company</h3><p class="net-sub">Assemble the members best placed to diligence or help a company.</p>
+  <input id="ddName" placeholder="Company name (optional)" oninput="buildPod()"/>
+  <div class="net-row"><select id="ddSec" onchange="buildPod()"></select>
+  <select id="ddNeed" onchange="buildPod()"><option value="dd">Due diligence</option><option value="cust">Customer / reference</option><option value="hire">Hiring / talent</option><option value="intro">Open doors / intros</option><option value="coinv">Co-investors</option></select></div>
+  <div id="ddOut" class="net-out"></div></div>
+ <div class="net-card"><h3>&#11088; Superconnectors</h3><p class="net-sub">The community's biggest bridges, by reach.</p><div id="superOut" class="net-out"></div></div>
+ <div class="net-card"><h3>&#128202; Network gaps</h3><p class="net-sub">Where coverage is thin &mdash; who to recruit or import next.</p><div id="gapOut" class="net-out"></div></div>
+</div></section>
+</main>
+<div class="footer-note">Capitalist Kibbutz &middot; J-Ventures member portal &mdash; prototype. Member data from the J-Ventures directory.</div>
+<button id="loungeToggle" onclick="toggleLounge(true)">&#128172; Lounge</button>
+<div id="loungeDock">
+ <div class="ldock-head"><b id="loungeTitle">&#128172; The Lounge</b><a class="ldock-wa" href="https://chat.whatsapp.com/REPLACE-WITH-INVITE" target="_blank" title="Open the WhatsApp group">WhatsApp</a><select id="chanSelect" onchange="pickChannelSel()"></select><button class="ldock-close" onclick="toggleLounge(false)">&times;</button></div>
+ <div class="chatmsgs" id="chatMsgs"></div>
+ <div class="chatinput"><input id="chatBox" placeholder="Message #channel..." onkeydown="if(event.key==='Enter')sendChat()"/><button onclick="sendChat()">Send</button></div>
+</div>
+</div>
+<div id="modalMount"></div>
+<script>
+const MEMBERS=[{"n": "Alex Stone", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 36}, {"n": "Jordan Park", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 35}, {"n": "Sam Bauer", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 34}, {"n": "Riley Vale", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 33}, {"n": "Taylor Katz", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 32}, {"n": "Morgan Tal", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 31}, {"n": "Casey Ross", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 30}, {"n": "Jamie Rivera", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 29}, {"n": "Avery Cohen", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 28}, {"n": "Quinn Frost", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 27}, {"n": "Dana Sharon", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 26}, {"n": "Reese Levi", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 25}, {"n": "Noa Shaw", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 24}, {"n": "Eli Field", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 23}, {"n": "Maya Klein", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 22}, {"n": "Lior Adler", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 21}, {"n": "Adi Nash", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 20}, {"n": "Tom Bergman", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 19}, {"n": "Gal Mor", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 18}, {"n": "Roni Lane", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 17}, {"n": "Alex Stone", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 16}, {"n": "Jordan Park", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 15}, {"n": "Sam Bauer", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 14}, {"n": "Riley Vale", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 13}, {"n": "Taylor Katz", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 12}, {"n": "Morgan Tal", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 11}, {"n": "Casey Ross", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 10}, {"n": "Jamie Rivera", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 9}, {"n": "Avery Cohen", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 8}, {"n": "Quinn Frost", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 7}, {"n": "Dana Sharon", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 6}, {"n": "Reese Levi", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 5}, {"n": "Noa Shaw", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 4}, {"n": "Eli Field", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 3}, {"n": "Maya Klein", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 2}, {"n": "Lior Adler", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 1}];
+MEMBERS.forEach(m=>{m.name=m.n;});
+const NGOS=[
+ {name:"Jewish Community Endowment Fund of San Francisco",cause:"Community Development",what:"Endows the long-term future of the SF Bay Area Jewish community; over $2B in assets.",help:"Planned giving, board service, and connecting philanthropic families.",web:"https://jewishfed.org",loc:"San Francisco",member:"Laura Lauder",role:"Former Chair"},
+ {name:"Jewish Federation of San Francisco",cause:"Community Development",what:"Central philanthropic and community-building body for Bay Area Jewish life.",help:"Donate, join a committee, or sponsor community programs.",web:"https://jewishfed.org",loc:"San Francisco",member:"Richard Fiedotin",role:"Former Chair"},
+ {name:"Oshman Family JCC",cause:"Community Development",what:"Palo Alto community center and home of the Z3 Project for Jewish dialogue.",help:"Donate, volunteer, or sponsor programs and the Z3 initiative.",web:"https://paloaltojcc.org",loc:"Palo Alto, CA",member:"Zack Bodner",role:"CEO (Adam Tachner, Board President)"},
+ {name:"Hillel of Silicon Valley",cause:"Education",what:"Supports Jewish student life and leadership across Bay Area campuses.",help:"Mentor students, host a Shabbat, or sponsor a chapter.",web:"https://www.hillel.org",loc:"Silicon Valley",member:"Tanya Okmyansky",role:"Longtime leader"},
+ {name:"Keren Hayesod (UIA)",cause:"Emergency & Relief",what:"Global fundraising arm supporting immigration, absorption, and relief for Israel.",help:"Donate, join the Women's Division, or host a fundraising event.",web:"https://www.kh-uia.org.il",loc:"Global / Israel",member:"Dina Nathusius",role:"VP, International Women's Division"},
+ {name:"Combined Jewish Philanthropies (CJP)",cause:"Community Development",what:"Greater Boston's central Jewish philanthropy and community foundation.",help:"Donate, serve on a committee, or mentor grantee organizations.",web:"https://www.cjp.org",loc:"Boston, MA",member:"Cindy Janower",role:"Former Board Chair"},
+ {name:"Union for Reform Judaism (URJ)",cause:"Religion & Heritage",what:"The congregational arm of Reform Judaism across North America.",help:"Support congregations, youth programs, and leadership development.",web:"https://urj.org",loc:"North America",member:"Daryl Messinger",role:"Immediate Past Chair (first woman)"},
+ {name:"Friends of the Israel Defense Forces (FIDF)",cause:"Emergency & Relief",what:"Supports the wellbeing of Israel's soldiers and their families.",help:"Donate, sponsor a soldier, or host a chapter event.",web:"https://www.fidf.org",loc:"New England",member:"Daniel Lewin",role:"Board Member, New England"},
+ {name:"American Friends of Tel Aviv University",cause:"Education",what:"Advances research and scholarships at Tel Aviv University.",help:"Endow a scholarship, fund research, or join the board.",web:"https://www.aftau.org",loc:"USA / Israel",member:"Garry Rayant",role:"Chair (Jennifer Gross, former CEO)"},
+ {name:"The Jewish Agency for Israel (JAFI)",cause:"Community Development",what:"Connects the global Jewish people with Israel through immigration and identity programs.",help:"Donate, mentor, or support budget and finance oversight.",web:"https://www.jewishagency.org",loc:"Global / Israel",member:"Bruce Sholk",role:"Chair, Budget & Finance Committee"},
+ {name:"Moishe House",cause:"Children & Youth",what:"Builds community for Jewish young adults in their 20s around the world.",help:"Fund a house, mentor residents, or sponsor programming.",web:"https://www.moishehouse.org",loc:"Global",member:"Kevin Waldman",role:"Board Chair"},
+ {name:"Ronald McDonald House Charities of Southern CA",cause:"Children & Youth",what:"Keeps families close to their seriously ill children during treatment.",help:"Donate, cook a family meal, or volunteer at a House.",web:"https://www.rmhcsc.org",loc:"Southern California",member:"Nicole Rubin",role:"Former CEO"},
+ {name:"Meira Academy",cause:"Education",what:"Jewish high school education in the South Bay.",help:"Sponsor a student, mentor, or join the board.",web:"https://www.meiraacademy.org",loc:"Palo Alto, CA",member:"Rabbi Joey Felsen",role:"President of the Board"},
+ {name:"Gideon Hausner Jewish Day School",cause:"Education",what:"K-8 Jewish day school in the Bay Area.",help:"Donate, mentor, or support scholarships.",web:"https://www.hausner.com",loc:"Palo Alto, CA",member:"Wendy Allyn",role:"Former Board President"}
+];
+const CAUSE_COLORS={"Poverty & Welfare":"#e8833a","Health":"#e0584f","Equality & Human Rights":"#d65a9a","Education":"#3a78c9","Environment":"#37a85b","Children & Youth":"#e0bd4a","Community Development":"#2aa6a0","Religion & Heritage":"#8a63c9","Arts & Culture":"#3ab0c9","Emergency & Relief":"#7a8699","Other":"#9aa6b5"};
+const KLUB=[{name:"Sample K.",age:27,city:"Tel Aviv",field:"Product",bio:"Demo J-KLUB profile.",open:"Networking",parentMember:"A member",li:"#",cohort:3}];
+const TEAM=[
+ {g:"GP & Investment Committee",n:"Jim Koshland",role:"Co-Founder & Chairman",b:"Past Partner, DLA Piper. Board: Levi's, Launch Media. Investor in PlayStudios (Nasdaq). LP in Sequoia, August Capital, Maven. Past President of the Jewish Federation in SF, former Chairman of Berkeley Foundation ($4.8B), Strategic Council for the Dean of Stanford Law School; Board of Trustees, UC Berkeley Foundation."},
+ {g:"GP & Investment Committee",n:"Oded Hermoni",role:"Co-Founder & Managing Partner, J-Ventures Group & J-Impact",b:"Past Partner at Rhodium Ventures, Co-Founder and Head of IATI (Israeli High Tech and VC Association), VP of Capital Point, Founder of TopIdea (acquired by YellowPages Group). Co-Founder and former Board Member of Shomrim, Board Member JFCS, Board of The Business School of Hebrew University, former Board of Jewish Federation SF, ICON, INTRO, Forward Association."},
+ {g:"GP & Investment Committee",n:"Eran Sandhaus",role:"Managing Partner & Co-Founder, J-Impact / J-Ventures Group",b:"Ex EIR at PlugNPlay, Advisor at NextGear Ventures. Former VP & GM at Aptiv, Cypress, Qualcomm, and TI. Board Member, Palo Alto OFJCC."},
+ {g:"GP & Investment Committee",n:"Nilesh Trivedi",role:"Investments Team",b:"Former Founder & Partner at Summation VC. Prior roles at Cisco. Board member and advisor to startup companies."},
+ {g:"GP & Investment Committee",n:"Gil Frostig",role:"GP / Investment Committee",b:"Former VP and GM at Intel and Qualcomm. Angel Investor and Board Member. Partner at Gig Capital Group."},
+ {g:"GP & Investment Committee",n:"David Wagonfeld",role:"GP / Investment Committee",b:"Partner and Co-Founder, Tandem VC ($143M fund). Co-Founder at Whist Partners. Community: Jewish Federation SF, Wexner Heritage."},
+ {g:"GP & Investment Committee",n:"Marc Abramowitz",role:"GP / Investment Committee",b:"Early investor in Palantir, RelateIQ and Wish (unicorn). J-Ventures Investment Committee member and private investor in 100+ startups including SpaceX."},
+ {g:"GP & Investment Committee",n:"Laurie Shahon",role:"GP / Investment Committee",b:"Founder of Wilton Capital Group. Board of 20+ public and private companies including Arbor Drugs, Eddie Bauer, KCG, Safelite Holdings, RPT Realty, and Boston Mutual Life Insurance."},
+ {g:"GP & Investment Committee",n:"Assaf Resnick",role:"GP / Investment Committee",b:"Founder and CEO of BigPanda, a unicorn and category leader in AIOps. Former Investor at Sequoia Capital."},
+ {g:"Venture Partners & Operating Partner",n:"Guy Miasnik",role:"Operating Partner",b:"CEO and Chairman of Impala and board member of Jewish Federations of North America. Former CEO/Founder of AtHoc (acquired by BlackBerry for ~$300M) and Chief Strategy Officer at BlackBerry."},
+ {g:"Venture Partners & Operating Partner",n:"Ken Rudin",role:"Venture Partner",b:"Ex Head of Growth at Google, Zynga and Meta, former VP at Salesforce. Advisor to growth companies and startups."},
+ {g:"Venture Partners & Operating Partner",n:"Shmuel Shottan",role:"Venture Partner",b:"Former SVP of Engineering at Hitachi Vantara and BlueArc. Technology leader who built large-scale storage R&D teams."},
+ {g:"Venture Partners & Operating Partner",n:"Doron Simon",role:"Venture Partner",b:"Former FVP/Corp at NICE (NASDAQ) and President of US at Tower Semiconductor (TSEM, NASDAQ)."},
+ {g:"Venture Partners & Operating Partner",n:"Ilan Rabinovitch",role:"Venture Partner",b:"Former SVP of Product at Datadog. Board Member, investor and advisor focused on early and growth-stage developer tooling and infrastructure companies."},
+ {g:"Venture Partners & Operating Partner",n:"Dan Malca",role:"Advisor",b:"Engineering leader with 17 years at Yahoo!, most recently Head of Engineering for the Yahoo! Homepage."}
+];
+const JOBS=[
+ {role:"Founding Account Executive",company:"BigPanda",source:"Portfolio",type:"Full-time",loc:"Palo Alto, CA",skill:"Enterprise SaaS sales, AIOps",link:"#"},
+ {role:"Senior ML Engineer",company:"Bria AI",source:"Portfolio",type:"Full-time",loc:"Tel Aviv / Remote",skill:"Generative AI, Python, diffusion models",link:"#"},
+ {role:"Product Manager, Identity",company:"Descope",source:"Portfolio",type:"Full-time",loc:"Remote (US)",skill:"Auth, developer tools, B2B",link:"#"},
+ {role:"VP Marketing",company:"Folloze",source:"Portfolio",type:"Full-time",loc:"San Francisco, CA",skill:"B2B demand gen, ABM",link:"#"},
+ {role:"Climate Hardware Engineer",company:"Epic Cleantec",source:"Portfolio",type:"Full-time",loc:"San Francisco, CA",skill:"Water systems, mechanical eng",link:"#"},
+ {role:"Data Infrastructure Engineer",company:"VAST Data",source:"Network",type:"Full-time",loc:"NYC / Remote",skill:"Distributed storage, Go",link:"#"},
+ {role:"Chief of Staff",company:"J-Ventures",source:"J-Ventures",type:"Full-time",loc:"Atherton, CA",skill:"Ops, community, VC",link:"#"},
+ {role:"Investment Analyst",company:"J-Ventures",source:"J-Ventures",type:"Full-time",loc:"Tel Aviv",skill:"Diligence, financial modeling",link:"#"},
+ {role:"J-Fellows Summer Intern",company:"J-Ventures",source:"J-Ventures",type:"Internship",loc:"Remote / SF",skill:"Open to J-KLUB / students",link:"#"},
+ {role:"Cybersecurity Researcher",company:"OPSWAT",source:"Network",type:"Full-time",loc:"Boston, MA",skill:"Malware analysis, critical infra",link:"#"},
+ {role:"Customer Success Lead",company:"Duda",source:"Portfolio",type:"Full-time",loc:"Remote (US)",skill:"SaaS CS, web platforms",link:"#"},
+ {role:"Frontend Engineer (React)",company:"RiseUp",source:"Network",type:"Contract",loc:"Tel Aviv",skill:"React, fintech, RTL",link:"#"}
+];
+const PENDING=[{name:"Sample Applicant",email:"applicant@example.com",funds:["Fund 2"],li:"#",status:"Pending"}];
+const CELEBR=[{icon:"&#127881;",who:"A member",label:"Good news",detail:"sample celebration"}];
+const MNEWS=[{who:"A member",type:"Press",h:"Sample member news item",p:"Demo content only.",d:"2026"}];
+const CHANNELS=["# general","# intros","# deal-flow","# cyber","# health-tech","# fund-3-lps","# j-klub"];
+const CHAT={"# general":[{who:"A member",t:"Welcome to the demo Lounge.",ago:"1h"}]};
+let curChan="# general";
+const TRENDING=["#cybersecurity","#fintech","#agritech","#exit_strategy","#secondary_market","#ai_governance"];
+const EVENTS=[
+ {when:"TOMORROW",title:"Q2 Agritech Deep Dive",by:"Led by Sig A. · technical review of the current pipeline",att:"👥 +12 attending"},
+ {when:"MAY 21 · 6:00 PM",title:"Summer LP Cocktail Mixer",by:"Tel Aviv · Capitalist Kibbutz HQ",att:""}
+];
+const NEWS=[
+ {d:"16",m:"Apr",tag:"Portfolio",h:"Cents raises $140M Series C",p:"Laundry-SMB platform Cents (Fund 2) raised a $140M Series C led by Sumeru Equity Partners - one of the largest software rounds in its vertical."},
+ {d:"05",m:"May",tag:"Portfolio",h:"CopilotKit raises $27M",p:"Fund 3 company CopilotKit raised $27M (incl. a $20M Series A led by Glilot, NFX and SignalFire) to help developers ship in-app AI agents."},
+ {d:"16",m:"Apr",tag:"Portfolio",h:"Zenskar raises $15M Series A",p:"Usage-based billing platform Zenskar (Fund 2b / Fund 3) raised a $15M Series A led by Susquehanna, with Bessemer participating."},
+ {d:"19",m:"Mar",tag:"Portfolio",h:"Eclypsium adds $25M strategic round",p:"Supply-chain security firm Eclypsium (Fund 2) raised $25M strategic (PEAK6), following its $45M Series C in early 2025."},
+ {d:"22",m:"Jan",tag:"Portfolio",h:"Vista AI (HeartVista) raises EUR 29.5M",p:"AI-guided MRI company Vista AI, formerly HeartVista (Fund 2), raised EUR 29.5M to expand its automated imaging platform."},
+ {d:"04",m:"Dec",tag:"Portfolio",h:"Connie Health: $40M Series B + acquisition",p:"Medicare platform Connie Health (Fund 2) raised a $40M Series B and acquired Clearlink Insurance Agency - its 10th acquisition."},
+ {d:"10",m:"Oct",tag:"Portfolio",h:"Nimble raises $47M Series B",p:"Web-data platform Nimble (Fund 2 / Fund 2b) raised a $47M Series B led by Norwest, bringing total funding to ~$75M."},
+ {d:"15",m:"Jul",tag:"Portfolio",h:"Hourly & WeSure merge",p:"Insurtechs Hourly and WeSure (both Fund 2) merged in a ~$53M combination with $10M in new funding."},
+ {d:"05",m:"Jun",tag:"NGO",h:"NGO directory is live",p:"Members can list the nonprofits they support and discover where to help - by cause area. Add yours from the NGO tab."}
+];
+const AV_COLORS=["#2a6f97","#13315c","#1d7a4d","#8a6d10","#9a3b6e","#5b3fa0","#0b6b6b","#9c5b1f"];
+function avColor(s){let h=0;for(let i=0;i<s.length;i++)h=s.charCodeAt(i)+((h<<5)-h);return AV_COLORS[Math.abs(h)%AV_COLORS.length];}
+const ORG_DOMAIN={"Google":"google.com","Microsoft":"microsoft.com","Meta":"meta.com","Apple":"apple.com","Amazon":"amazon.com","AWS":"aws.amazon.com","Intel":"intel.com","NVIDIA":"nvidia.com","Oracle":"oracle.com","Salesforce":"salesforce.com","Uber":"uber.com","LinkedIn":"linkedin.com","Cisco":"cisco.com","Qualcomm":"qualcomm.com","OpenAI":"openai.com","IBM":"ibm.com","VMware":"vmware.com","Yahoo":"yahoo.com","Adobe":"adobe.com","Twitter":"twitter.com","Slack":"slack.com","Twitch":"twitch.tv","Datadog":"datadoghq.com","Splunk":"splunk.com","CyberArk":"cyberark.com","SolarEdge":"solaredge.com","Mobileye":"mobileye.com","Palo Alto Networks":"paloaltonetworks.com","Ellie Mae":"elliemae.com","dLocal":"dlocal.com","Mellanox":"nvidia.com","Marvell":"marvell.com","Broadcom":"broadcom.com","Western Digital":"westerndigital.com","Applied Materials":"appliedmaterials.com","Samsung":"samsung.com","GlobalFoundries":"gf.com","Texas Instruments":"ti.com","Pure Storage":"purestorage.com","Intuit":"intuit.com","Box":"box.com","Tinder":"tinder.com","Pinterest":"pinterest.com","Lyft":"lyft.com","Waymo":"waymo.com","Airbnb":"airbnb.com","Stripe":"stripe.com","DataRobot":"datarobot.com","BigPanda":"bigpanda.io","Bria AI":"bria.ai","Descope":"descope.com","BlackBerry":"blackberry.com","Bill.com":"bill.com","Zynga":"zynga.com","Genpact":"genpact.com","Amdocs":"amdocs.com","NICE":"nice.com","Stanford":"stanford.edu","Harvard":"harvard.edu","MIT":"mit.edu","Tel Aviv University":"tau.ac.il","Sequoia":"sequoiacap.com","Lightspeed":"lsvp.com","Bessemer":"bvp.com","Khosla":"khoslaventures.com","General Atlantic":"generalatlantic.com","Softbank":"softbank.com","Accel":"accel.com","NEA":"nea.com","Tiger Global":"tigerglobal.com","Morgan Stanley":"morganstanley.com","Goldman Sachs":"goldmansachs.com","JP Morgan":"jpmorgan.com","BCG":"bcg.com","McKinsey":"mckinsey.com","Deloitte":"deloitte.com","Bain":"bain.com","Qualcomm Ventures":"qualcommventures.com","Intel Capital":"intelcapital.com","J-Ventures":"j-ventures.com"};
+function orgLabels(orgs,limit){return (orgs||[]).slice(0,limit||4).map(o=>{const d=ORG_DOMAIN[o];const logo=d?`<img src="https://logo.clearbit.com/${d}" loading="lazy" onerror="this.style.display='none'"/>`:'';return `<span class="colab">${logo}${o}</span>`;}).join('');}
+function initials(n){const p=n.replace(/\(.*?\)/g,'').replace(/[^A-Za-z .]/g,'').trim().split(/\s+/);return (((p[0]||'')[0]||'')+((p[1]||'')[0]||'')).toUpperCase();}
+let mShown=60;
+function login(){const em=document.getElementById('email').value.trim()||"member@j-ventures.com";
+ document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');
+ const nm=em.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+ document.getElementById('meName').textContent=nm;document.getElementById('meAv').textContent=(nm[0]||'M').toUpperCase();
+ const ADMINS=['oded@j-ventures.com','odedhermoni@j-ventures.com','admin@j-ventures.com','jim@j-ventures.com','eran@j-ventures.com'];
+ window.ADMIN=ADMINS.includes(em.toLowerCase());
+ window.ACCESS=window.ADMIN?'all':document.getElementById('acc').value;
+ window.ME=MEMBERS.findIndex(m=>m.n.toLowerCase()===nm.toLowerCase());
+ if(window.ME<0)window.ME=MEMBERS.findIndex(m=>m.n==='Oded Hermoni'); if(window.ME<0)window.ME=0;
+ document.getElementById('navApprovals').style.display=window.ADMIN?'':'none';
+ initFilters();renderStats();renderChips();renderMembers();renderTeam();initConn();renderNGOs();renderKlub();renderJobs();renderLP();renderNews();renderMNews();renderLounge();renderLoungePage();renderApprovals();buildGraph();renderNetwork();renderTicker();renderMatches();}
+function logout(){document.getElementById('app').classList.add('hidden');document.getElementById('login').classList.remove('hidden');}
+function go(tab){['members','team','conn','network','ngos','jklub','lounge','jobs','lp','news','mnews','approvals'].forEach(s=>document.getElementById(s).classList.toggle('hidden',s!==tab));
+ document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));setLoungeContext(tab);window.scrollTo({top:0,behavior:'smooth'});}
+function uniqueSorted(a){return [...new Set(a)].filter(Boolean).sort();}
+function fill(id,vals){const s=document.getElementById(id);vals.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;s.appendChild(o);});}
+function renderStats(){
+ const tot=MEMBERS.length;
+ const fo=MEMBERS.filter(m=>m.pos==='Founder / CEO').length;
+ const secN=new Set(MEMBERS.flatMap(m=>m.sec)).size;
+ // Curated network composition (roles overlap, so these exceed single-bucket auto-counts)
+ const vc=172, ex=270;
+ document.getElementById('statbar').innerHTML=
+  `<div class="stat"><b>${tot}</b><span>Members</span></div>`+
+  `<div class="stat"><b>${vc}</b><span>VCs / PE</span></div>`+
+  `<div class="stat"><b>${fo}</b><span>Founders / CEOs</span></div>`+
+  `<div class="stat"><b>${ex}</b><span>C-Level / Execs</span></div>`+
+  `<div class="stat"><b>${secN}</b><span>Sectors</span></div>`;
+}
+function renderChips(){
+ const pos=["Investor","Founder / CEO","C-Level / Exec","Legal"];
+ const sec=["Cybersecurity","AI / ML","FinTech","Healthcare / Medical","Semiconductors"];
+ const co=["Google","NVIDIA","Intel","Microsoft","Meta","Apple","Qualcomm","Sequoia"];
+ const mk=(v,fn)=>`<span class="chip" data-v="${v}" onclick="${fn}('${v.replace(/'/g,"")}')">${v}</span>`;
+ document.getElementById('mChips').innerHTML='<span class="chip" onclick="resetFilters()">All</span>'+
+  pos.map(v=>mk(v,'chipPos')).join('')+sec.map(v=>mk(v,'chipSec')).join('')+
+  '<span style="align-self:center;font-size:11px;color:var(--muted);margin:0 4px">companies:</span>'+
+  co.map(v=>mk(v,'chipCo')).join('');
+}
+function chipMark(v){document.querySelectorAll('#mChips .chip').forEach(c=>c.classList.toggle('active',c.dataset.v===v));}
+function chipPos(v){document.getElementById('fPosition').value=v;document.getElementById('fSector').value='';document.getElementById('fCompany').value='';chipMark(v);renderMembers();}
+function chipSec(v){document.getElementById('fSector').value=v;document.getElementById('fPosition').value='';document.getElementById('fCompany').value='';chipMark(v);renderMembers();}
+function chipCo(v){document.getElementById('fCompany').value=v;document.getElementById('fSector').value='';document.getElementById('fPosition').value='';chipMark(v);renderMembers();}
+function resetFilters(){['fSector','fPosition','fFund','fCompany','mSearch'].forEach(id=>document.getElementById(id).value='');
+ document.querySelectorAll('#mChips .chip').forEach(c=>c.classList.remove('active'));renderMembers();}
+function renderTeam(){
+ const groups=[...new Set(TEAM.map(t=>t.g))];
+ document.getElementById('teamWrap').innerHTML=groups.map(g=>{
+  const cards=TEAM.filter(t=>t.g===g).map(t=>`<div class="card" style="cursor:default"><div class="row1"><div class="avatar" style="background:${avColor(t.n)}">${initials(t.n)}</div>
+   <div><h3>${t.n}</h3><div class="pos">${t.role}</div></div></div><div class="title" style="-webkit-line-clamp:6">${t.b}</div></div>`).join('');
+  return `<div class="cause-h"><span class="dot" style="background:var(--brand)"></span>${g}</div><div class="grid">${cards}</div>`;
+ }).join('');}
+function initFilters(){
+ fill('fSector',uniqueSorted(MEMBERS.flatMap(m=>m.sec)));
+ fill('fPosition',uniqueSorted(MEMBERS.map(m=>m.pos)));
+ fill('fFund',uniqueSorted(MEMBERS.map(m=>m.fund)));
+ fill('fCompany',uniqueSorted(MEMBERS.flatMap(m=>m.orgs||[])));
+ fill('nCause',uniqueSorted(NGOS.map(n=>n.cause)));
+ fill('kField',uniqueSorted(KLUB.map(k=>k.field)));
+ fill('kCity',uniqueSorted(KLUB.map(k=>k.city)));
+ fill('jSource',uniqueSorted(JOBS.map(j=>j.source)));
+ fill('jType',uniqueSorted(JOBS.map(j=>j.type)));
+ fill('jLoc',uniqueSorted(JOBS.map(j=>j.loc)));
+ fill('mnType',uniqueSorted(MNEWS.map(x=>x.type)));
+}
+function renderJobs(){
+ const q=document.getElementById('jSearch').value.toLowerCase();
+ const src=document.getElementById('jSource').value,typ=document.getElementById('jType').value,loc=document.getElementById('jLoc').value;
+ const SRC_COL={"J-Ventures":"#c9a227","Portfolio":"#2a6f97","Network":"#1d7a4d"};
+ const list=JOBS.filter(j=>{if(src&&j.source!==src)return false;if(typ&&j.type!==typ)return false;if(loc&&j.loc!==loc)return false;
+  if(q&&!((j.role+' '+j.company+' '+j.skill+' '+j.loc).toLowerCase().includes(q)))return false;return true;});
+ document.getElementById('jCount').textContent=list.length+" of "+JOBS.length+" roles";
+ document.getElementById('jGrid').innerHTML=list.map(j=>{const col=SRC_COL[j.source]||'#2a6f97';
+  return `<div class="card" style="cursor:default"><div class="row1"><div class="avatar" style="background:${col};border-radius:12px">${j.company[0]}</div>
+   <div><h3>${j.role}</h3><div class="pos" style="color:${col}">${j.company}</div></div></div>
+   <div class="meta-line"><b>&#128205; ${j.loc}</b> &middot; ${j.type}</div>
+   <div class="meta-line">${j.skill}</div>
+   <div class="tags"><span class="tag" style="background:${col}1f;color:${col}">${j.source}</span>
+   <a class="tag fund" href="${j.link}" onclick="alert('In the live site: opens the role / warm intro.');return false;">Apply &#8599;</a></div></div>`;
+ }).join('')||`<p style="color:var(--muted)">No roles match these filters.</p>`;
+}
+/* ---------- AI Concierge (client-side smart match; production uses live Claude) ---------- */
+const SYN={vc:["venture","investor","capital"],ai:["artificial intelligence","machine learning","ml"],cyber:["cybersecurity","security"],health:["healthcare","medical","biotech"],fintech:["finance","payments","banking"],bay:["california","silicon valley","palo alto","san francisco","menlo"],nyc:["new york"],israel:["tel aviv","israeli"],intro:[],raise:["fund","invest"],exit:["acquired","sold","ipo"]};
+const STOP=new Set("a an the to of in for with who can me my i and or at on is be need looking want help".split(" "));
+// typo auto-correction against the directory's own vocabulary
+const VOCAB=[...new Set([...Object.keys(ORG_DOMAIN).map(s=>s.toLowerCase()),'linkedin','cybersecurity','security','fintech','healthcare','medical','semiconductor','semiconductors','founder','investor','venture','ventures','partner','engineer','climate','cleantech','israel','israeli','boston','york','francisco','seed','series','exit','acquired'])];
+function lev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
+function correctTok(t){if(t.length<4)return t;if(VOCAB.indexOf(t)>=0)return t;let best=t,bd=99;for(const w of VOCAB){if(Math.abs(w.length-t.length)>2)continue;const dd=lev(t,w);if(dd<bd){bd=dd;best=w;}}return bd<=2?best:t;}
+function aiAsk(q){document.getElementById('aiQ').value=q;aiSearch();}
+function aiSearch(){
+ const raw=document.getElementById('aiQ').value.trim();const box=document.getElementById('aiResults');
+ if(!raw){box.innerHTML='';return;}
+ let toks=raw.toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(t=>t&&!STOP.has(t)).map(correctTok);
+ let terms=[];toks.forEach(t=>{terms.push(t);if(SYN[t])SYN[t].forEach(s=>terms.push(s));});
+ terms=[...new Set(terms)];
+ const scored=MEMBERS.map(m=>{
+  let hay=(m.n+' '+m.b+' '+m.sec.join(' ')+' '+m.fund+' '+m.pos).toLowerCase();
+  // neutralize company/org names that contain place names so they aren't read as locations
+  hay=hay.replace(/palo alto networks/g,'paloalto_networks').replace(/bank of america/g,'bofa')
+         .replace(/boston consulting/g,'bcg').replace(/boston children/g,'bostonchildrens')
+         .replace(/new york stock|new york university|new york times/g,'nyinst')
+         .replace(/bank leumi|leumi/g,'leumibank').replace(/silicon valley bank/g,'svb');
+  let sc=0;const hit=[];
+  terms.forEach(t=>{if(hay.includes(t)){sc+= (m.sec.join(' ').toLowerCase().includes(t)||m.fund.toLowerCase().includes(t)?2:1);hit.push(t);}});
+  return {m,sc,hit:[...new Set(hit)]};
+ }).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,8);
+ if(!scored.length){box.innerHTML='<div class="aires-head">No strong matches &mdash; try fewer or different words.</div>';return;}
+ box.innerHTML='<div class="aires-head"><span>&#129504; Top matches for &ldquo;'+raw+'&rdquo;</span><b style="color:var(--brand2);cursor:pointer;font-weight:600" onclick="document.getElementById(\'aiQ\').value=\'\';document.getElementById(\'aiResults\').innerHTML=\'\'">clear</b></div>'+
+  scored.map(x=>{const m=x.m;const i=MEMBERS.indexOf(m);
+   return `<div class="simrow" onclick="openMember(${i})"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}</div>
+    <div style="flex:1"><div class="sn">${m.n} <span style="color:var(--muted);font-weight:500">&middot; ${m.pos}</span></div>
+    <div class="sp">${m.b.slice(0,90)}...</div><div class="aiwhy">matched: ${x.hit.join(', ')}</div></div></div>`;}).join('');
+}
+function filteredMembers(){
+ const q=document.getElementById('mSearch').value.toLowerCase();
+ const sec=document.getElementById('fSector').value,pos=document.getElementById('fPosition').value,fund=document.getElementById('fFund').value,company=document.getElementById('fCompany').value;
+ return MEMBERS.filter(m=>{
+  if(sec&&!m.sec.includes(sec))return false;
+  if(pos&&m.pos!==pos)return false;
+  if(fund&&m.fund!==fund)return false;
+  if(company&&!(m.orgs||[]).includes(company))return false;
+  if(q&&!((m.n+' '+m.b+' '+m.sec.join(' ')+' '+m.fund+' '+(m.orgs||[]).join(' ')).toLowerCase().includes(q)))return false;
+  return true;});
+}
+function renderMembers(){
+ const list=filteredMembers();
+ document.getElementById('mCount').textContent=list.length+" of "+MEMBERS.length+" members";
+ document.getElementById('mGrid').innerHTML=list.map(m=>{
+  const i=MEMBERS.indexOf(m);
+  const posTag=`<span class="tag" style="background:#eaf4fb;color:var(--brand);font-weight:700">${m.pos}</span>`;
+  const tags=posTag+m.sec.slice(0,3).map(x=>`<span class="tag">${x}</span>`).join('');
+  const cos=orgLabels(m.orgs,4);
+  return `<div class="card" onclick="openMember(${i})"><div class="row1"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}</div>
+   <div><h3>${m.n}</h3><div class="curtitle" style="margin-top:3px">${m.title||m.pos}</div></div></div>
+   ${m.former?`<div class="fmrtitle">${m.former}</div>`:''}
+   ${cos?`<div class="cos">${cos}</div>`:''}
+   <div class="tags">${tags}</div></div>`;
+ }).join('')||`<p style="color:var(--muted)">No members match these filters.</p>`;
+ document.getElementById('mMore').innerHTML='';
+}
+function openMember(i){const m=MEMBERS[i];
+ const sec=m.sec.length?m.sec.map(x=>`<span class="tag">${x}</span>`).join(' '):'<span style="color:var(--muted)">&mdash;</span>';
+ document.getElementById('modalMount').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">
+  <div class="mhead"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}</div>
+  <div><h3>${m.n}</h3><div class="pos">${m.pos}</div></div><button class="close" onclick="closeModal()">&times;</button></div>
+  <div class="mbody">${m.title?`<h4>Now</h4><p style="font-weight:600">${m.title}</p>`:''}
+  ${m.former?`<h4>Previously</h4><p>${m.former}</p>`:''}
+  <h4>Profile</h4><p>${m.b}</p>
+  ${(m.orgs&&m.orgs.length)?`<h4>Companies &amp; affiliations</h4><div class="cos" style="margin-top:4px">${orgLabels(m.orgs,12)}</div>`:''}
+  <h4>Sectors</h4><p>${sec}</p>
+  ${m.fund?`<h4>Fund / VC affiliation</h4><p>${m.fund}</p>`:''}
+  ${similarHTML(i)}
+  <div class="connect"><button class="primary" onclick="alert('In the live site: opens a warm intro / message.')">Request intro</button>
+  <button onclick="closeModal();centerConn(${i})">Connection web</button></div></div></div></div>`;}
+function similarHTML(i){const m=MEMBERS[i];
+ const sims=MEMBERS.map((o,j)=>{if(j===i)return null;let s=0;o.sec.forEach(x=>{if(m.sec.includes(x))s++;});if(o.fund&&o.fund===m.fund)s+=2;if(o.pos===m.pos)s+=0.5;return s>0?{o,j,s}:null;})
+  .filter(Boolean).sort((a,b)=>b.s-a.s).slice(0,3);
+ if(!sims.length)return '';
+ return '<h4>Similar members</h4>'+sims.map(x=>`<div class="simrow" onclick="openMember(${x.j})"><div class="avatar" style="background:${avColor(x.o.n)}">${initials(x.o.n)}</div>
+  <div><div class="sn">${x.o.n}</div><div class="sp">${x.o.pos}${x.o.sec.length?' &middot; '+x.o.sec[0]:''}</div></div></div>`).join('');}
+function closeModal(){document.getElementById('modalMount').innerHTML='';}
+function renderNGOs(){
+ const q=document.getElementById('nSearch').value.toLowerCase();const cause=document.getElementById('nCause').value;
+ let list=NGOS.filter(n=>{if(cause&&n.cause!==cause)return false;if(q&&!(n.name+' '+n.what+' '+n.help).toLowerCase().includes(q))return false;return true;});
+ document.getElementById('nCount').textContent=list.length+" NGOs";
+ const causes=[...new Set(list.map(n=>n.cause))].sort();
+ document.getElementById('nWrap').innerHTML=causes.map(c=>{const col=CAUSE_COLORS[c]||'#9aa6b5';
+  const cards=list.filter(n=>n.cause===c).map(n=>`<div class="card" style="cursor:default"><div class="row1"><div class="avatar" style="background:${col};border-radius:12px">${n.name[0]}</div>
+   <div><h3>${n.name}</h3><div class="pos" style="color:${col}">${n.cause}</div></div></div>
+   <div class="title" style="-webkit-line-clamp:3">${n.what}</div><div class="meta-line"><b>How to help:</b> ${n.help}</div>
+   <div class="meta-line">&#128100; ${n.member} &middot; ${n.role} | &#129309; ${n.ceo}</div>
+   <div class="tags"><a class="tag" href="${n.web}" target="_blank">Website &#8599;</a><span class="tag loc">${n.loc}</span></div></div>`).join('');
+  return `<div class="cause-h"><span class="dot" style="background:${col}"></span>${c}</div><div class="grid">${cards}</div>`;}).join('')||`<p style="color:var(--muted)">No NGOs match.</p>`;
+}
+function copyJoin(){const url="https://kibbutz.vc/j-klub/join";const m=document.getElementById('joinMsg');
+ if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>{m.textContent="Copied: "+url;},()=>{m.textContent=url;});}else{m.textContent=url;}}
+function renderKlub(){
+ const q=document.getElementById('kSearch').value.toLowerCase();const fld=document.getElementById('kField').value;const city=document.getElementById('kCity').value;const coh=document.getElementById('kCohort').value;
+ const list=KLUB.filter(k=>{if(fld&&k.field!==fld)return false;if(city&&k.city!==city)return false;if(coh&&String(k.cohort)!==coh)return false;if(q&&!(k.name+' '+k.field+' '+k.city+' '+k.bio+' '+k.open+' '+k.parentMember).toLowerCase().includes(q))return false;return true;});
+ document.getElementById('kCount').textContent=list.length+" of "+KLUB.length+" profiles";
+ document.getElementById('kGrid').innerHTML=list.map(k=>`<div class="card" style="cursor:default"><div class="row1"><div class="avatar" style="background:${avColor(k.name)}">${k.name[0]}</div>
+  <div><h3>${k.name} <span style="font-size:13px;color:var(--muted);font-weight:600">&middot; ${k.age}</span></h3><div class="pos">${k.field}</div></div></div>
+  <div class="title" style="-webkit-line-clamp:3">${k.bio}</div><div class="meta-line">&#129309; <b>Open to:</b> ${k.open}</div>
+  <div class="meta-line">&#128104;&#8205;&#128105;&#8205;&#128103; Child of <b>${k.parentMember}</b></div>
+  <div class="tags"><span class="tag loc">${k.city}</span><span class="tag" style="background:#fdf6e3;color:#8a6d10">J-Fellows C${k.cohort}</span><a class="tag" href="${k.li}" target="_blank" style="background:#eaf2fb;color:#0a66c2">in &middot; LinkedIn</a></div></div>`).join('')||`<p style="color:var(--muted)">No profiles match.</p>`;
+}
+/* ---------- Connection Web (shared companies / funds / sectors) ---------- */
+let connCenter=0;
+function connTo(a,b){ // REAL connections only: shared company (worked together) or shared fund. No sector links.
+ const shared=[];let s=0;
+ (a.orgs||[]).forEach(o=>{if((b.orgs||[]).includes(o)){shared.push(o);s+=3;}});
+ if(a.fund&&a.fund===b.fund&&a.fund){shared.push(a.fund);s+=4;}
+ return {s,shared:[...new Set(shared)].slice(0,3)};
+}
+function connEdges(i){
+ const a=MEMBERS[i];const arr=[];
+ MEMBERS.forEach((b,j)=>{if(j===i)return;const c=connTo(a,b);if(c.s>0)arr.push({j,s:c.s,shared:c.shared});});
+ return arr.sort((x,y)=>y.s-x.s).slice(0,14);
+}
+function initConn(){
+ document.getElementById('memNames').innerHTML=MEMBERS.map(m=>`<option value="${m.n.replace(/"/g,'')}">`).join('');
+ renderConnections(0);
+}
+function pickConn(){const v=document.getElementById('connPick').value.trim().toLowerCase();
+ const i=MEMBERS.findIndex(m=>m.n.toLowerCase()===v);if(i>=0)renderConnections(i);}
+function centerConn(i){go('conn');renderConnections(i);window.scrollTo({top:0,behavior:'smooth'});}
+function renderConnections(i){
+ connCenter=i;const a=MEMBERS[i];const edges=connEdges(i);
+ const cx=430,cy=280,rx=330,ry=205;const N=edges.length;
+ let svg='';
+ // edges first
+ edges.forEach((e,k)=>{const ang=(2*Math.PI*k/N)-Math.PI/2;const x=cx+rx*Math.cos(ang),y=cy+ry*Math.sin(ang);
+  const w=1.2+Math.min(e.s,8)*0.7;svg+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#29ABE2" stroke-opacity="${0.18+Math.min(e.s,8)*0.07}" stroke-width="${w}"/>`;});
+ // outer nodes
+ edges.forEach((e,k)=>{const m=MEMBERS[e.j];const ang=(2*Math.PI*k/N)-Math.PI/2;const x=cx+rx*Math.cos(ang),y=cy+ry*Math.sin(ang);
+  svg+=`<g style="cursor:pointer" onclick="centerConn(${e.j})"><circle cx="${x}" cy="${y}" r="23" fill="${avColor(m.n)}"/><text x="${x}" y="${y+4}" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">${initials(m.n)}</text>`;
+  const nm=m.n.length>18?m.n.slice(0,17)+'…':m.n;svg+=`<text x="${x}" y="${y+36}" text-anchor="middle" fill="#0f2f44" font-size="10.5" font-weight="600">${nm}</text></g>`;});
+ // center node
+ svg+=`<circle cx="${cx}" cy="${cy}" r="34" fill="#0f2f44"/><circle cx="${cx}" cy="${cy}" r="34" fill="none" stroke="#29ABE2" stroke-width="3"/><text x="${cx}" y="${cy+5}" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">${initials(a.n)}</text>`;
+ svg+=`<text x="${cx}" y="${cy+52}" text-anchor="middle" fill="#0f2f44" font-size="12.5" font-weight="700">${a.n}</text>`;
+ document.getElementById('connSvg').innerHTML=svg;
+ document.getElementById('connPick').value=a.n;
+ // list with shared labels
+ const lst=edges.map(e=>{const m=MEMBERS[e.j];
+  const chips=e.shared.map(x=>`<span class="tag">${x}</span>`).join(' ');
+  return `<div class="simrow" onclick="centerConn(${e.j})"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}</div>
+   <div style="flex:1"><div class="sn">${m.n} <span style="color:var(--muted);font-weight:500">&middot; ${m.pos}</span></div>
+   <div style="margin-top:3px">${chips||'<span class="sp">shared interests</span>'}</div></div></div>`;}).join('');
+ document.getElementById('connList').innerHTML=`<div class="aires-head" style="margin-bottom:6px">${edges.length} connections for ${a.n} <span style="font-weight:500;color:var(--muted)">(shared company or fund)</span></div>`+(lst||'<p style="color:var(--muted)">No shared-company or fund connections found in the bio. Enrichment (full work history) would surface more.</p>');
+}
+/* ---------- LP Reports (fund-gated) ---------- */
+const LP_REPORTS={
+ f2:[{t:"Fund II — Q4 2025 LP Report",d:"Quarterly performance, NAV, TVPI / DPI, and portfolio company updates.",date:"Jan 2026"},
+     {t:"Fund II — 2025 Annual Letter",d:"GP letter, strategy review, and outlook for the coming year.",date:"Jan 2026"},
+     {t:"Fund II — Capital Account Statement",d:"Your capital account, contributions, and distributions to date.",date:"Q4 2025"},
+     {t:"Fund II — Audited Financials 2025",d:"Year-end audited financial statements.",date:"Mar 2026"}],
+ f3:[{t:"Fund III — Q4 2025 LP Report",d:"Quarterly performance, NAV, TVPI / DPI, and portfolio company updates.",date:"Jan 2026"},
+     {t:"Fund III — 2025 Annual Letter",d:"GP letter, strategy review, and outlook for the coming year.",date:"Jan 2026"},
+     {t:"Fund III — Capital Call Notice",d:"Latest capital call schedule and wiring instructions.",date:"Feb 2026"},
+     {t:"Fund III — Portfolio Deep Dive",d:"Company-by-company review of the Fund III portfolio.",date:"Q4 2025"}]
+};
+function fundCard(r,col,tag,unlocked){
+ return `<div class="lpcard${unlocked?'':' locked'}"><div class="lpicon">${unlocked?'&#128202;':'&#128274;'}</div>
+  <div style="flex:1"><div style="font-weight:700">${r.t} <span class="fundtag" style="background:${col}1f;color:${col}">${tag}</span></div>
+  <div style="font-size:12.5px;color:var(--muted);margin-top:2px">${r.d} &middot; ${r.date}</div></div>
+  ${unlocked?`<button class="lpbtn" onclick="alert('In the live site this opens the secure PDF / data room.')">Open</button>`:`<button class="lpbtn lock">&#128274; Restricted</button>`}</div>`;
+}
+function renderLP(){
+ const a=window.ACCESS||'none';const seeF2=(a==='all'||a==='f2');const seeF3=(a==='all'||a==='f3');
+ const note={all:"GP / team view — you can see Fund II and Fund III.",f2:"Fund II LP — you can see Fund II reports only.",f3:"Fund III LP — you can see Fund III reports only.",none:"You don't have LP access. Contact the team if this is a mistake."}[a];
+ document.getElementById('lpAccessNote').textContent=note;
+ let html='';
+ html+=`<div class="cause-h"><span class="dot" style="background:#29ABE2"></span>Fund II${seeF2?'':' — restricted'}</div>`;
+ html+= seeF2 ? LP_REPORTS.f2.map(r=>fundCard(r,'#29ABE2','Fund II',true)).join('') : `<div class="lpcard locked"><div class="lpicon">&#128274;</div><div style="flex:1"><b>Fund II reports are restricted to Fund II LPs.</b><div style="font-size:12.5px;color:var(--muted)">Your account isn't a Fund II LP.</div></div><button class="lpbtn lock">&#128274; Restricted</button></div>`;
+ html+=`<div class="cause-h" style="margin-top:20px"><span class="dot" style="background:#1B8DBE"></span>Fund III${seeF3?'':' — restricted'}</div>`;
+ html+= seeF3 ? LP_REPORTS.f3.map(r=>fundCard(r,'#1B8DBE','Fund III',true)).join('') : `<div class="lpcard locked"><div class="lpicon">&#128274;</div><div style="flex:1"><b>Fund III reports are restricted to Fund III LPs.</b><div style="font-size:12.5px;color:var(--muted)">Your account isn't a Fund III LP.</div></div><button class="lpbtn lock">&#128274; Restricted</button></div>`;
+ document.getElementById('lpWrap').innerHTML=html;
+}
+/* ---------- LP access request (pre-login) ---------- */
+const LP_EMAIL="admin@j-ventures.com"; const REG_WA="16502239587"; // WhatsApp +1 650 223 9587
+function openRegister(){
+ document.getElementById('modalMount').innerHTML=`<div class="modal-bg" style="z-index:60" onclick="if(event.target===this)closeModal()"><div class="modal">
+  <div class="mhead"><div class="avatar" style="background:var(--brand);border-radius:12px">&#128273;</div><div><h3>Request portal access</h3><div class="pos">J-Ventures LPs</div></div><button class="close" onclick="closeModal()">&times;</button></div>
+  <div class="mbody"><p style="font-size:13px;color:var(--muted);margin-bottom:6px">Tell us who you are. The team verifies your fund(s) and sends a private login.</p>
+   <h4>Full name</h4><input id="rName" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>Email</h4><input id="rEmail" placeholder="you@example.com" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>Which fund(s) are you an LP in?</h4>
+   <label style="display:block;font-size:14px;margin:4px 0"><input type="checkbox" id="rF2"/> Fund 2</label>
+   <label style="display:block;font-size:14px;margin:4px 0"><input type="checkbox" id="rF2b"/> Fund 2b</label>
+   <label style="display:block;font-size:14px;margin:4px 0"><input type="checkbox" id="rF3"/> Fund 3</label>
+   <h4>LinkedIn (optional)</h4><input id="rLi" placeholder="https://www.linkedin.com/in/..." style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <p style="font-size:11.5px;color:var(--muted);margin-top:12px">Fund access is granted by the team after verification &mdash; not by self-selection. In production this writes to the LP Registration Airtable; for now it opens a pre-filled email.</p>
+   <div class="connect"><button class="primary" onclick="submitRegister()">Email request</button><button onclick="submitRegisterWA()" style="background:#25D366;color:#fff;border-color:#25D366">WhatsApp</button><button onclick="closeModal()">Cancel</button></div>
+  </div></div></div>`;
+}
+function regFields(){const v=id=>(document.getElementById(id).value||'').trim();
+ const nm=v('rName'),em=v('rEmail'); if(!nm||!em){alert('Please add your name and email.');return null;}
+ const funds=[document.getElementById('rF2').checked?'Fund 2':'',document.getElementById('rF2b').checked?'Fund 2b':'',document.getElementById('rF3').checked?'Fund 3':''].filter(Boolean).join(', ')||'(none selected)';
+ return {nm,em,funds,li:v('rLi')};}
+function regDone(nm){document.getElementById('modalMount').innerHTML=`<div class="modal-bg" style="z-index:60" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="mbody" style="text-align:center;padding:34px">
+  <div style="font-size:40px">&#9989;</div><h3 style="margin:10px 0 6px">Request sent</h3>
+  <p style="color:var(--muted);font-size:14px">Thanks, ${nm}. The J-Ventures team will verify your fund access and send your private login.</p>
+  <div class="connect" style="justify-content:center"><button class="primary" onclick="closeModal()">Done</button></div></div></div></div>`;}
+function submitRegisterWA(){const f=regFields();if(!f)return;
+ const txt=`Portal access request\nName: ${f.nm}\nEmail: ${f.em}\nFunds (self-reported): ${f.funds}\nLinkedIn: ${f.li}`;
+ window.open(`https://wa.me/${REG_WA}?text=${encodeURIComponent(txt)}`,'_blank');regDone(f.nm);}
+function submitRegister(){
+ const v=id=>(document.getElementById(id).value||'').trim();
+ const nm=v('rName'),em=v('rEmail'); if(!nm||!em){alert('Please add your name and email.');return;}
+ const funds=[document.getElementById('rF2').checked?'Fund 2':'',document.getElementById('rF2b').checked?'Fund 2b':'',document.getElementById('rF3').checked?'Fund 3':''].filter(Boolean).join(', ')||'(none selected)';
+ const body=`Name: ${nm}%0D%0AEmail: ${em}%0D%0AFunds (self-reported): ${funds}%0D%0ALinkedIn: ${v('rLi')}`;
+ window.location.href=`mailto:${LP_EMAIL}?subject=${encodeURIComponent('Portal access request: '+nm)}&body=${body}`;
+ document.getElementById('modalMount').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="mbody" style="text-align:center;padding:34px">
+  <div style="font-size:40px">&#9989;</div><h3 style="margin:10px 0 6px">Request sent</h3>
+  <p style="color:var(--muted);font-size:14px">Thanks, ${nm}. The J-Ventures team will verify your fund access and send your private login.</p>
+  <div class="connect" style="justify-content:center"><button class="primary" onclick="closeModal()">Done</button></div></div></div></div>`;
+}
+/* ---------- Submit a company to Deal Flow ---------- */
+const DEAL_EMAIL="dealflow@j-ventures.com"; // change to your deal-flow inbox
+function openDeal(){const me=MEMBERS[window.ME||0]||{n:''};
+ document.getElementById('modalMount').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">
+  <div class="mhead"><div class="avatar" style="background:var(--brand);border-radius:12px">&#128640;</div><div><h3>Submit a company</h3><div class="pos">to J-Ventures Deal Flow</div></div><button class="close" onclick="closeModal()">&times;</button></div>
+  <div class="mbody">
+   <h4>Company name</h4><input id="dCo" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>Website</h4><input id="dWeb" placeholder="https://" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>One-liner</h4><input id="dOne" placeholder="What do they do, in one sentence?" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>Founders</h4><input id="dFnd" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <div style="display:flex;gap:10px"><div style="flex:1"><h4>Sector</h4><input id="dSec" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/></div>
+   <div style="flex:1"><h4>Stage / Round</h4><input id="dStg" placeholder="Seed, Series A, raising now..." style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/></div></div>
+   <h4>Why it's interesting / your relationship</h4><textarea id="dWhy" rows="3" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"></textarea>
+   <h4>Pitch deck link</h4><input id="dDeck" placeholder="Google Drive / Dropbox / DocSend link" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <p style="font-size:11px;color:var(--muted);margin:4px 0 0">On the live Airtable form you can upload the deck file directly; here, paste a link.</p>
+   <h4>Your name</h4><input id="dBy" value="${(me.n||'').replace(/"/g,'&quot;')}" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <p style="font-size:11.5px;color:var(--muted);margin-top:12px">Goes to the J-Ventures deal team for review. In production this writes straight into the Deal Flow Airtable; for now it opens a pre-filled email to the team.</p>
+   <div class="connect"><button class="primary" onclick="submitDeal()">Send to Deal Flow</button><button onclick="closeModal()">Cancel</button></div>
+  </div></div></div>`;
+}
+function submitDeal(){
+ const g=id=>(document.getElementById(id).value||'').trim();
+ const co=g('dCo'); if(!co){alert('Please add a company name.');return;}
+ const body=`Company: ${co}%0D%0AWebsite: ${g('dWeb')}%0D%0AOne-liner: ${g('dOne')}%0D%0AFounders: ${g('dFnd')}%0D%0ASector: ${g('dSec')}%0D%0AStage/Round: ${g('dStg')}%0D%0AWhy interesting: ${g('dWhy')}%0D%0APitch deck: ${g('dDeck')}%0D%0ASubmitted by: ${g('dBy')}`;
+ window.location.href=`mailto:${DEAL_EMAIL}?subject=${encodeURIComponent('Deal Flow submission: '+co)}&body=${body}`;
+ document.getElementById('modalMount').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="mbody" style="text-align:center;padding:34px">
+  <div style="font-size:40px">&#9989;</div><h3 style="margin:10px 0 6px">Thanks &mdash; sent to Deal Flow</h3>
+  <p style="color:var(--muted);font-size:14px">${co} is on its way to the J-Ventures deal team. They review every member-sourced deal.</p>
+  <div class="connect" style="justify-content:center"><button class="primary" onclick="closeModal()">Done</button></div></div></div></div>`;
+}
+/* ---------- Edit my profile (in-session; production persists to Airtable/Wix) ---------- */
+function openEdit(){const m=MEMBERS[window.ME||0];
+ document.getElementById('modalMount').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">
+  <div class="mhead"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}</div><div><h3>Edit my profile</h3><div class="pos">${m.n}</div></div><button class="close" onclick="closeModal()">&times;</button></div>
+  <div class="mbody">
+   <h4>Headline / role</h4><input id="edRole" value="${(m.pos||'').replace(/"/g,'&quot;')}" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>Bio</h4><textarea id="edBio" rows="5" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px">${m.b||''}</textarea>
+   <h4>Sectors (comma-separated)</h4><input id="edSec" value="${(m.sec||[]).join(', ')}" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>Fund / VC affiliation</h4><input id="edFund" value="${(m.fund||'').replace(/"/g,'&quot;')}" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <h4>LinkedIn URL</h4><input id="edLi" value="${m.li||''}" placeholder="https://www.linkedin.com/in/..." style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px"/>
+   <p style="font-size:11.5px;color:var(--muted);margin-top:12px">Prototype: changes apply for this session only. In production each member edits their own record (saved to Airtable/Wix), optionally with light approval.</p>
+   <div class="connect"><button class="primary" onclick="saveEdit()">Save changes</button><button onclick="closeModal()">Cancel</button></div>
+  </div></div></div>`;
+}
+function saveEdit(){const m=MEMBERS[window.ME||0];
+ m.pos=document.getElementById('edRole').value.trim()||m.pos;
+ m.b=document.getElementById('edBio').value.trim()||m.b;
+ m.sec=document.getElementById('edSec').value.split(',').map(s=>s.trim()).filter(Boolean);
+ m.fund=document.getElementById('edFund').value.trim();
+ m.li=document.getElementById('edLi').value.trim();
+ closeModal();renderMembers();renderStats();
+ alert('Saved for this session. In production this writes to your member record.');
+}
+function renderNews(){document.getElementById('newsWrap').innerHTML=NEWS.map(n=>`<div class="news-item"><div class="date">${n.d}<small>${n.m}</small></div>
+ <div><span class="pill">${n.tag}</span><h3>${n.h}</h3><p>${n.p}</p></div></div>`).join('');}
+function renderApprovals(){
+ const wrap=document.getElementById('apWrap');if(!wrap)return;
+ if((window.ACCESS||'none')!=='all'){wrap.innerHTML='<p style="color:var(--muted)">Admins only.</p>';return;}
+ const F=['Fund 2','Fund 2b','Fund 3'];
+ wrap.innerHTML=PENDING.map((r,i)=>{
+  if(r.status!=='Pending')return `<div class="lpcard"><div class="lpicon">${r.status==='Approved'?'&#9989;':'&#10060;'}</div><div style="flex:1"><b>${r.name}</b> <span style="color:var(--muted);font-size:12px">${r.email}</span><div style="font-size:12px;color:var(--muted)">${r.status==='Approved'?'Approved &middot; invite link sent &middot; funds: '+(r.funds.join(', ')||'none'):'Rejected'}</div></div></div>`;
+  const fchk=F.map(f=>`<label style="font-size:12px;margin-right:12px;white-space:nowrap"><input type="checkbox" id="ap${i}_${f.replace(/\s/g,'')}" ${r.funds.includes(f)?'checked':''}/> ${f}</label>`).join('');
+  return `<div class="lpcard"><div class="avatar" style="background:${avColor(r.name)};width:44px;height:44px;flex:none">${initials(r.name)}</div>
+   <div style="flex:1"><div><b>${r.name}</b> <span style="color:var(--muted);font-size:12px">${r.email}</span></div>
+   <div style="font-size:11.5px;color:var(--muted);margin:2px 0">Self-reported: ${r.funds.join(', ')} &middot; <a href="${r.li}" target="_blank">LinkedIn</a></div>
+   <div style="margin-top:5px"><span style="font-size:11px;color:var(--muted);font-weight:700">GRANT:</span> ${fchk}</div></div>
+   <button class="lpbtn" onclick="approveReq(${i})">&#9989; Approve</button>
+   <button class="lpbtn" style="background:#fdecec;color:#c0392b" onclick="rejectReq(${i})">Reject</button></div>`;
+ }).join('')||'<p style="color:var(--muted)">No pending requests.</p>';
+}
+function approveReq(i){const r=PENDING[i];const F=['Fund 2','Fund 2b','Fund 3'];
+ const funds=F.filter(f=>document.getElementById('ap'+i+'_'+f.replace(/\s/g,'')).checked);
+ r.funds=funds;r.status='Approved';renderApprovals();
+ alert('Approved '+r.name+'.\nGranted: '+(funds.join(', ')||'no funds')+'\nA login link was sent to '+r.email+' (production: Wix Members invite + email/WhatsApp).');}
+function rejectReq(i){PENDING[i].status='Rejected';renderApprovals();}
+function renderMNews(){
+ const q=(document.getElementById('mnSearch').value||'').toLowerCase();const ty=document.getElementById('mnType').value;
+ const list=MNEWS.filter(x=>{if(ty&&x.type!==ty)return false;if(q&&!((x.who+' '+x.h+' '+x.p).toLowerCase().includes(q)))return false;return true;});
+ document.getElementById('mnCount').textContent=list.length+" items";
+ document.getElementById('mnWrap').innerHTML=list.map(x=>`<div class="news-item"><div class="avatar" style="background:${avColor(x.who)};width:46px;height:46px;flex:none">${initials(x.who)}</div>
+  <div><span class="pill">${x.type}</span> <span style="font-size:12px;color:var(--muted)">${x.d}</span><h3>${x.who} &mdash; ${x.h}</h3><p>${x.p}</p></div></div>`).join('')||`<p style="color:var(--muted)">No items match.</p>`;
+}
+function renderLounge(){
+ const sel=document.getElementById('chanSelect');if(!sel)return;
+ sel.innerHTML=CHANNELS.map(c=>`<option ${c===curChan?'selected':''}>${c}</option>`).join('');
+ const msgs=CHAT[curChan]||[];
+ document.getElementById('chatMsgs').innerHTML=msgs.length?msgs.map(m=>`<div class="msg"><div class="avatar" style="background:${avColor(m.who)}">${initials(m.who)}</div>
+  <div class="mb"><div class="mn">${m.who} <span>${m.ago}</span></div><div class="mt">${m.t}</div></div></div>`).join(''):`<p style="color:var(--muted);padding:8px">No messages in ${curChan} yet. Say hi 👋</p>`;
+ const ms=document.getElementById('chatMsgs');ms.scrollTop=ms.scrollHeight;
+}
+function pickChannelSel(){curChan=document.getElementById('chanSelect').value;renderLounge();}
+function toggleLounge(open){document.getElementById('app').classList.toggle('lounge-collapsed',!open);document.getElementById('loungeDock').classList.toggle('open',open);document.getElementById('loungeToggle').style.display=open?'none':'';}
+function setLoungeContext(tab){const sel=document.getElementById('chanSelect');const title=document.getElementById('loungeTitle');if(!sel)return;
+ if(tab==='jklub'){curChan='# j-klub';sel.disabled=true;title.innerHTML='&#128101; J-KLUB chat';}
+ else{sel.disabled=false;title.innerHTML='&#128172; The Lounge';}
+ renderLounge();}
+function shareSimcha(){window.location.href='mailto:admin@j-ventures.com?subject='+encodeURIComponent('Good news to share with the Kibbutz')+'&body='+encodeURIComponent('Share a birthday, wedding/simcha, new role, baby, or milestone for the community:\n\nWho:\nWhat:\nDate:');}
+function renderTicker(){
+ const cel=CELEBR.map(c=>`<span class="ti">${c.icon} <b>${c.who}</b> ${c.label}${c.detail?': '+c.detail:''}</span>`);
+ const nws=NEWS.map(n=>`<span class="ti"><b>${n.tag}</b> &middot; ${n.h}</span>`);
+ const items=[...cel,...nws].join('');
+ document.getElementById('newsBar').innerHTML=`<span class="label">&#128227; Today</span><div class="track">${items}${items}</div>`;}
+function matchesFor(idx){const a=MEMBERS[idx];const out=[];
+ // A good intro is someone NEW: not a current coworker, fund-mate, or shared-alma-org contact (you already know those).
+ const aOrgs=new Set(a.orgs||[]);
+ MEMBERS.forEach((b,j)=>{if(j===idx)return;
+  const sharedOrg=(b.orgs||[]).some(o=>aOrgs.has(o));
+  const sameCo=a.co&&b.co&&a.co===b.co;
+  const sameFund=a.fund&&b.fund&&a.fund===b.fund;
+  if(sharedOrg||sameCo||sameFund)return; // already in each other's orbit -> skip
+  let s=0,why='';
+  const sec=(a.sec||[]).find(x=>(b.sec||[]).includes(x));
+  if(sec){
+   if(a.pos==='Investor'&&b.pos==='Founder / CEO'){s+=5;why='Founder building in '+sec+' — for your pipeline';}
+   else if(a.pos==='Founder / CEO'&&b.pos==='Investor'){s+=5;why='Investor active in '+sec+' — could back you';}
+   else if(a.pos==='Founder / CEO'&&b.pos==='Founder / CEO'){s+=3;why='Fellow founder in '+sec+' to compare notes';}
+   else{s+=3;why='Shares your focus on '+sec;}
+  } else {
+   if(a.pos==='Investor'&&b.pos==='Founder / CEO'){s+=2;why='A founder outside your current circle';}
+   else if(a.pos==='Founder / CEO'&&b.pos==='Investor'){s+=2;why='An investor new to your network';}
+  }
+  s+=(b.score||0)/120; // nudge toward notable people, but secondary to fit
+  if(s>=1)out.push({j,s,why:why||('Worth meeting in '+((b.sec&&b.sec[0])||'your space'))});});
+ return out.sort((x,y)=>y.s-x.s);
+}
+function renderMatches(shuffle){
+ const meIdx=window.ME||0;const me=MEMBERS[meIdx];
+ let list=matchesFor(meIdx);let pool=list.slice(0,12);
+ pool.forEach(p=>{p.mut=mutualCount(meIdx,p.j);p.s+=p.mut*0.4;});
+ pool.sort((a,b)=>b.s-a.s);
+ if(shuffle)pool.sort(()=>Math.random()-0.5);
+ const pick=pool.slice(0,3);
+ document.getElementById('matchSub').textContent='Private suggestions for '+(me?me.n:'you');
+ document.getElementById('matchWrap').innerHTML=pick.map(p=>{const b=MEMBERS[p.j];
+  return `<div class="matchcard"><div class="matchpair"><div class="avatar" style="background:#534ab7">YOU</div><span class="vs">&harr;</span><div class="avatar" style="background:${avColor(b.n)}">${initials(b.n)}</div></div>
+   <div class="matchnames">${b.n}</div><div class="matchwhy">${p.why}${p.mut?' &middot; '+p.mut+' shared connections':''}</div>
+   <button onclick="openMember(${p.j})">View &amp; request intro</button></div>`;
+ }).join('')||'<p style="color:var(--muted)">No strong matches in your bio yet &mdash; enrichment (full work history) surfaces more.</p>';
+}
+function sendChat(){const box=document.getElementById('chatBox');const t=(box.value||'').trim();if(!t)return;
+ const me=(document.getElementById('meName').textContent)||'You';
+ (CHAT[curChan]=CHAT[curChan]||[]).push({who:me,t:t,ago:'now'});box.value='';renderLounge();renderLoungePage();}
+function renderLoungePage(){
+ const wrapC=document.getElementById('lngChannels');if(!wrapC)return;
+ wrapC.innerHTML=CHANNELS.map((c,i)=>`<button class="lng-chan${c===curChan?' on':''}" onclick="pickLngChan(${i})">${c}</button>`).join('');
+ document.getElementById('lngChanName').textContent=curChan;
+ const me=(document.getElementById('meName').textContent)||'You';
+ const msgs=CHAT[curChan]||[];
+ const rows=msgs.map(m=>{const mine=(m.who===me);
+  const av=`<div class="lng-av" style="background:${avColor(m.who)}">${initials(m.who)}</div>`;
+  const bubble=`<div class="lng-b${mine?' me':''}"><div class="lng-meta">${mine?'You':m.who}<span>${m.ago||''}</span></div><div class="lng-tx">${m.t}</div></div>`;
+  return `<div class="lng-row${mine?' me':''}">${mine?bubble:av+bubble}${mine?av:''}</div>`;}).join('');
+ document.getElementById('lngThread').innerHTML='<div class="lng-date">Today</div>'+(rows||'<p style="color:var(--muted);padding:10px">No messages in '+curChan+' yet. Say hi 👋</p>');
+ const meIdx=window.ME||0;const others=MEMBERS.filter((m,i)=>i!==meIdx).slice(0,6);
+ document.getElementById('lngOnline').innerHTML=others.map(m=>`<div class="lng-on"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}<i class="dot"></i></div><div><b>${m.n}</b><span>${m.title||m.pos||''}</span></div></div>`).join('');
+ document.getElementById('lngTrend').innerHTML=TRENDING.map(t=>`<span class="lng-tag">${t}</span>`).join('');
+ document.getElementById('lngEvents').innerHTML=EVENTS.map(e=>`<div class="lng-ev"><div class="lng-ev-when">${e.when}</div><div class="lng-ev-t">${e.title}</div><div class="lng-ev-by">${e.by}</div>${e.att?`<div class="lng-ev-att">${e.att}</div>`:''}</div>`).join('');
+ const th=document.getElementById('lngThread');th.scrollTop=th.scrollHeight;
+}
+function pickLngChan(i){curChan=CHANNELS[i];renderLoungePage();}
+function sendLng(){const box=document.getElementById('lngBox');const t=(box.value||'').trim();if(!t)return;
+ const me=(document.getElementById('meName').textContent)||'You';
+ (CHAT[curChan]=CHAT[curChan]||[]).push({who:me,t:t,ago:'now'});box.value='';renderLoungePage();}
+let GRAPH=[],COMP={};
+function buildGraph(){const N=MEMBERS.length;GRAPH=Array.from({length:N},()=>[]);COMP={};
+ const sets=MEMBERS.map(m=>new Set([...(m.orgs||[]),...(m.co?[m.co]:[])]));
+ sets.forEach((s,i)=>s.forEach(c=>{(COMP[c]=COMP[c]||[]).push(i);}));
+ for(let i=0;i<N;i++){for(let j=i+1;j<N;j++){let tie=false;
+  for(const o of sets[i]){if(sets[j].has(o)){tie=true;break;}}
+  if(!tie&&MEMBERS[i].fund&&MEMBERS[i].fund===MEMBERS[j].fund)tie=true;
+  if(tie){GRAPH[i].push(j);GRAPH[j].push(i);}}}}
+function mutualCount(i,j){if(!GRAPH.length)return 0;const A=new Set(GRAPH[i]);let c=0;for(const x of GRAPH[j])if(A.has(x))c++;return c;}
+function netItem(idx,why,act,fn){const m=MEMBERS[idx];
+ return `<div class="net-item"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}</div>`+
+  `<div><b>${m.n}</b><div class="nm-why">${why}</div></div>`+
+  `<div class="nm-act"><button onclick="${fn}">${act}</button></div></div>`;}
+function findIntro(){const q=(document.getElementById('introQ').value||'').trim().toLowerCase();const out=document.getElementById('introOut');
+ if(q.length<2){out.innerHTML='';return;}
+ const comps=Object.keys(COMP).filter(c=>c.toLowerCase().includes(q)).sort((a,b)=>COMP[b].length-COMP[a].length);
+ if(comps.length){const c=comps[0];const who=[...new Set(COMP[c])].sort((a,b)=>(MEMBERS[b].score||0)-(MEMBERS[a].score||0)).slice(0,6);
+  out.innerHTML=`<div class="net-count">${[...new Set(COMP[c])].length} member(s) can reach people at ${c}</div>`+who.map(i=>netItem(i,'Worked at / tied to '+c,'Ask for intro',`openMember(${i})`)).join('');return;}
+ const mi=MEMBERS.findIndex(m=>m.n.toLowerCase().includes(q));
+ if(mi>=0){const nb=GRAPH[mi].slice().sort((a,b)=>(MEMBERS[b].score||0)-(MEMBERS[a].score||0)).slice(0,6);
+  out.innerHTML=`<div class="net-count">${GRAPH[mi].length} member(s) connect to ${MEMBERS[mi].n}</div>`+(nb.map(i=>netItem(i,'Shared affiliation','Ask to connect',`openMember(${i})`)).join('')||'<p style="color:var(--muted);font-size:12px">No mapped connectors yet — real reach appears once members import.</p>');return;}
+ out.innerHTML='<p style="color:var(--muted);font-size:12px">No match — try a company (e.g. Google) or a member name.</p>';}
+function podScore(m,i,sec,need,co){let s=0;
+ if(sec&&(m.sec||[]).includes(sec))s+=3;
+ const cl=(co||'').toLowerCase();
+ if(cl&&[...(m.orgs||[]),m.co||''].some(o=>(o||'').toLowerCase().includes(cl)))s+=2;
+ if(need==='dd'){if(m.pos==='Founder / CEO'||/C[A-Z]O|VP|Chief|Head/.test(m.title||''))s+=2;}
+ else if(need==='cust'){if(/VP|Chief|Head|C[A-Z]O/.test(m.title||''))s+=2;}
+ else if(need==='hire'){if(m.pos==='Founder / CEO')s+=1;}
+ else if(need==='coinv'){if(m.pos==='Investor')s+=3;}
+ else if(need==='intro'){s+=(GRAPH[i]||[]).length/40;}
+ s+=(m.score||0)/100;return s;}
+function buildPod(){const co=document.getElementById('ddName').value;const sec=document.getElementById('ddSec').value;const need=document.getElementById('ddNeed').value;const out=document.getElementById('ddOut');
+ if(!sec&&!co){out.innerHTML='<p style="color:var(--muted);font-size:12px">Pick a sector (and optionally a company) to assemble a pod.</p>';return;}
+ const scored=MEMBERS.map((m,i)=>({i,s:podScore(m,i,sec,need,co)})).filter(x=>x.s>0.6).sort((a,b)=>b.s-a.s).slice(0,8);
+ const lbl={dd:'diligence',cust:'reference calls',hire:'hiring',intro:'intros',coinv:'co-investing'}[need];
+ out.innerHTML=`<div class="net-count">Suggested pod for ${lbl}${sec?' in '+sec:''}</div>`+(scored.map(x=>{const m=MEMBERS[x.i];
+  const why=[(sec&&(m.sec||[]).includes(sec))?sec+' expertise':'',(m.title||m.pos||'')].filter(Boolean).join(' · ');
+  const body=encodeURIComponent('Hi '+m.n.split(' ')[0]+", we're looking at "+(co||'a company')+' and would value your input on '+lbl+'. Could we grab 20 minutes?');
+  return netItem(x.i,why,'Request input',`window.location.href='mailto:?subject=${encodeURIComponent('Kibbutz: input on '+(co||'a company'))}&body=${body}'`);}).join('')||'<p style="color:var(--muted);font-size:12px">No strong matches — broaden the sector.</p>');}
+function renderNetwork(){if(!GRAPH.length)buildGraph();
+ const ds=document.getElementById('ddSec');if(ds&&ds.options.length<2){const secs=[...new Set(MEMBERS.flatMap(m=>m.sec||[]))].sort();ds.innerHTML='<option value="">Sector…</option>'+secs.map(s=>`<option>${s}</option>`).join('');}
+ const sup=MEMBERS.map((m,i)=>({i,d:GRAPH[i].length})).sort((a,b)=>b.d-a.d).slice(0,6);
+ document.getElementById('superOut').innerHTML=sup.map(x=>netItem(x.i,x.d+' connections in the community','View',`openMember(${x.i})`)).join('');
+ const bySec={};MEMBERS.forEach(m=>(m.sec||[]).forEach(s=>bySec[s]=(bySec[s]||0)+1));
+ const gaps=Object.entries(bySec).sort((a,b)=>a[1]-b[1]).slice(0,8);
+ document.getElementById('gapOut').innerHTML='<div class="net-tagrow">'+gaps.map(([s,n])=>`<span class="lng-tag">${s} &middot; ${n}</span>`).join('')+'</div><p style="color:var(--muted);font-size:12px;margin-top:8px">Thinnest sectors &mdash; good targets for new members or imports.</p>';}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!document.getElementById('login').classList.contains('hidden'))login();});
+</script></body></html>
