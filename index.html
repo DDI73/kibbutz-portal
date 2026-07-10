@@ -277,7 +277,7 @@ Continue with Google</button>
 <div class="demo-note">&#128274; <b>Prototype demo gate.</b> Any email + password works here. In the live site, LPs register, the team verifies their fund(s), and each gets a private login (Wix Members Area). Fund-level visibility is set by the team, not self-selected.</div>
 </div></div>
 <div id="app" class="hidden">
-<header class="top"><div class="jvlogo"><svg class="jvmark" width="28" height="32" viewBox="0 0 30 34" fill="currentColor"><rect x="2" y="3" width="26" height="5" rx="2.5"/><rect x="7" y="11" width="21" height="5" rx="2.5"/><rect x="2" y="19" width="26" height="5" rx="2.5"/><rect x="9" y="27" width="13" height="5" rx="2.5"/></svg><div><div class="jvname">J-VENTURES</div><div class="jvtag">STRONGER TOGETHER</div></div></div>
+<header class="top"><div class="jvlogo" onclick="go('members');window.scrollTo(0,0)" style="cursor:pointer" title="Home"><svg class="jvmark" width="28" height="32" viewBox="0 0 30 34" fill="currentColor"><rect x="2" y="3" width="26" height="5" rx="2.5"/><rect x="7" y="11" width="21" height="5" rx="2.5"/><rect x="2" y="19" width="26" height="5" rx="2.5"/><rect x="9" y="27" width="13" height="5" rx="2.5"/></svg><div><div class="jvname">J-VENTURES</div><div class="jvtag">STRONGER TOGETHER</div></div></div>
 <nav class="tabs">
 <button data-tab="members" class="active" onclick="go('members')">Members</button>
 <button data-tab="team" onclick="go('team')">Team</button>
@@ -505,7 +505,7 @@ const TEAM=[
 const JOBS=[
  {role:"Founding Account Executive",company:"BigPanda",source:"Portfolio",type:"Full-time",loc:"Palo Alto, CA",skill:"Enterprise SaaS sales, AIOps",link:"#"},
  {role:"Senior ML Engineer",company:"Bria AI",source:"Portfolio",type:"Full-time",loc:"Tel Aviv / Remote",skill:"Generative AI, Python, diffusion models",link:"#"},
- {role:"Product Manager, Identity",company:"Descope",source:"Portfolio",type:"Full-time",loc:"Remote (US)",skill:"Auth, developer tools, B2B",link:"#"},
+ {role:"See all open roles",company:"Descope",source:"Portfolio",type:"Full-time",loc:"Remote (US) / Israel",skill:"Identity, auth, developer tools, B2B",link:"https://job-boards.greenhouse.io/descope?gh_src=ijr5bfmk9us"},
  {role:"VP Marketing",company:"Folloze",source:"Portfolio",type:"Full-time",loc:"San Francisco, CA",skill:"B2B demand gen, ABM",link:"#"},
  {role:"Climate Hardware Engineer",company:"Epic Cleantec",source:"Portfolio",type:"Full-time",loc:"San Francisco, CA",skill:"Water systems, mechanical eng",link:"#"},
  {role:"Data Infrastructure Engineer",company:"VAST Data",source:"Network",type:"Full-time",loc:"NYC / Remote",skill:"Distributed storage, Go",link:"#"},
@@ -646,7 +646,7 @@ function renderJobs(){
    <div class="jobmeta">&#128205; ${j.loc} &middot; ${j.type}</div>
    <div class="jobskill">${j.skill}</div>
    <div class="jobfoot"><span class="tag" style="background:${col}1f;color:${col}">${j.source}</span>
-   <button class="jobview" onclick="alert('In the live site: opens the role / warm intro.')">View details &#8599;</button></div></div>`;
+   <button class="jobview" onclick="${j.link&&j.link!=='#'?`window.open('${j.link}','_blank','noopener')`:`alert('In the live site: opens the role / warm intro.')`}">View details &#8599;</button></div></div>`;
  }).join('')||`<p style="color:var(--muted)">No roles match these filters.</p>`;
 }
 /* ---------- AI Concierge (client-side smart match; production uses live Claude) ---------- */
