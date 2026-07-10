@@ -29,9 +29,10 @@ a{color:var(--blue);text-decoration:none}.hidden{display:none!important}
 .btn-primary{background:var(--navy);color:#fff;padding:12px 18px;width:100%}.btn-primary:hover{background:var(--navy2)}
 .demo-note{margin-top:16px;font-size:11.5px;color:var(--muted);background:#f7f9fc;border:1px dashed var(--line);border-radius:10px;padding:9px 11px}
 header.top{position:sticky;top:0;z-index:20;background:#fff;color:var(--ink);display:flex;align-items:center;gap:18px;padding:9px 22px;min-height:62px;border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(15,47,68,.05)}
-nav.tabs{display:flex;gap:4px;margin-left:10px;flex:1;flex-wrap:wrap}
-nav.tabs button{background:transparent;border:none;color:var(--navy);padding:10px 17px;border-radius:9px;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.2px}
-nav.tabs button.active{background:var(--brand);color:#fff;box-shadow:0 3px 10px rgba(41,171,226,.35)}nav.tabs button:hover{background:rgba(41,171,226,.12);color:var(--brand)}
+nav.tabs{display:flex;gap:1px;margin-left:8px;flex:1;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{background:transparent;border:none;color:var(--muted);padding:7px 12px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+nav.tabs button.active{background:var(--brand);color:#fff}nav.tabs button:hover{background:rgba(41,171,226,.1);color:var(--brand)}
 nav.tabs button.active:hover{color:#fff}
 .submitbtn{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:none;padding:11px 20px;border-radius:11px;font-weight:800;font-size:15px;cursor:pointer;box-shadow:0 4px 14px rgba(41,171,226,.45)}
 .submitbtn:hover{filter:brightness(1.05)}
@@ -205,6 +206,57 @@ main{max-width:1180px;margin:0 auto;padding:24px 22px 60px}
 .net-item .nm-act button{background:var(--brand);color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 .net-count{font-size:12.5px;font-weight:700;color:var(--brand2);margin:4px 0 2px}
 .net-tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.lpbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.lpchips{display:flex;gap:7px;flex-wrap:wrap}
+.lpchip{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:20px;padding:6px 13px;font-size:12.5px;font-weight:600;cursor:pointer}
+.lpchip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.lpexport{background:var(--navy);color:#fff;border:none;border-radius:9px;padding:8px 14px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.lpsec{font-size:12px;color:var(--muted);margin:12px 0 2px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.docgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:12px;margin-top:8px}
+.doccard{background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:14px;display:flex;flex-direction:column}
+.docrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.docicon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.doctag{font-size:10px;font-weight:800;letter-spacing:.4px;padding:3px 8px;border-radius:20px;background:#eef2f7;color:var(--muted)}
+.doctag.latest{background:var(--gold);color:#fff}
+.doctitle{font-weight:700;font-size:14px;color:var(--navy);line-height:1.3}
+.docdesc{font-size:12.5px;color:var(--muted);margin:5px 0 12px;flex:1}
+.docfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:9px;gap:8px}
+.docsize{font-size:11.5px;color:var(--muted)}
+.docview{background:rgba(41,171,226,.12);color:var(--brand2);border:none;border-radius:8px;padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.doclocked{display:flex;gap:11px;align-items:center;background:#fff;border:1px dashed var(--line);border-radius:13px;padding:14px;margin-top:8px}
+.doclocked .lpicon{font-size:20px}
+.lpextra{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+@media(max-width:700px){.lpextra{grid-template-columns:1fr}}
+.lprequest{display:flex;gap:11px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:14px}
+.lprequest .lpicon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.lpsupport{background:var(--navy);color:#fff;border-radius:13px;padding:14px}
+.lpsupport b{color:#fff}
+.lpsupport .docview{background:var(--brand);color:#fff}
+.goldcard{border-color:#e7cf7a;box-shadow:0 4px 16px rgba(201,162,39,.18)}
+.goldav{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--gold)}
+.goldbadge{font-size:12px}
+.cardact{display:flex;gap:8px;margin-top:11px;border-top:1px solid var(--line);padding-top:10px}
+.wabtn-mini{flex:1;background:#25D366;color:#fff;border:none;border-radius:8px;padding:7px;font-size:12.5px;font-weight:700;cursor:pointer}
+.viewbtn-mini{flex:1;background:rgba(41,171,226,.12);color:var(--brand2);border:none;border-radius:8px;padding:7px;font-size:12.5px;font-weight:700;cursor:pointer}
+.jobcard{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:15px;display:flex;flex-direction:column}
+.jobtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;min-height:38px}
+.joblogo{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+.jfeat{font-size:9.5px;font-weight:800;letter-spacing:.5px;background:var(--gold);color:#fff;padding:3px 8px;border-radius:20px}
+.jobrole{font-weight:700;font-size:15px;color:var(--navy);line-height:1.3}
+.jobco{font-size:13px;color:var(--brand2);font-weight:600;margin-top:2px}
+.jobmeta{font-size:12px;color:var(--muted);margin-top:8px}
+.jobskill{font-size:12.5px;color:var(--ink);margin:6px 0 12px;flex:1}
+.jobfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:10px;gap:8px}
+.jobview{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.mngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:13px}
+.mncard{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:15px}
+.mntop{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mntop .avatar{width:40px;height:40px;flex:none}
+.mnwho{font-weight:700;font-size:13.5px;color:var(--navy)}
+.mndate{font-size:11.5px;color:var(--muted)}
+.mntype{font-size:10px;font-weight:800;letter-spacing:.4px;background:#eef2f7;color:var(--muted);padding:3px 9px;border-radius:20px}
+.mnh{font-weight:700;font-size:14.5px;color:var(--navy);line-height:1.3;margin-bottom:5px}
+.mnp{font-size:12.5px;color:var(--muted);line-height:1.45}
 </style></head><body>
 <div id="login"><div class="login-card">
 <div class="jvlogo big" style="justify-content:center;margin-bottom:14px"><svg class="jvmark" width="40" height="46" viewBox="0 0 30 34" fill="currentColor"><rect x="2" y="3" width="26" height="5" rx="2.5"/><rect x="7" y="11" width="21" height="5" rx="2.5"/><rect x="2" y="19" width="26" height="5" rx="2.5"/><rect x="9" y="27" width="13" height="5" rx="2.5"/></svg><div><div class="jvname">J-VENTURES</div><div class="jvtag">STRONGER TOGETHER</div></div></div>
@@ -240,7 +292,6 @@ Continue with Google</button>
 <button data-tab="mnews" onclick="go('mnews')">Member News</button>
 <button data-tab="approvals" id="navApprovals" onclick="go('approvals')" style="display:none">Approvals</button></nav>
 <div class="whoami">
-<button class="submitbtn" onclick="openDeal()">+ Submit a company</button>
 <div class="av" id="meAv">M</div><span id="meName">Member</span>
 <button class="logout" onclick="openEdit()" style="border-color:var(--brand);color:var(--brand)">Edit my profile</button>
 <button class="logout" onclick="logout()">Log out</button></div></header>
@@ -380,7 +431,7 @@ Continue with Google</button>
 </div>
 <div id="modalMount"></div>
 <script>
-const MEMBERS=[{"n": "Alex Stone", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 36}, {"n": "Jordan Park", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 35}, {"n": "Sam Bauer", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 34}, {"n": "Riley Vale", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 33}, {"n": "Taylor Katz", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 32}, {"n": "Morgan Tal", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 31}, {"n": "Casey Ross", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 30}, {"n": "Jamie Rivera", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 29}, {"n": "Avery Cohen", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 28}, {"n": "Quinn Frost", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 27}, {"n": "Dana Sharon", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 26}, {"n": "Reese Levi", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 25}, {"n": "Noa Shaw", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 24}, {"n": "Eli Field", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 23}, {"n": "Maya Klein", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 22}, {"n": "Lior Adler", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 21}, {"n": "Adi Nash", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 20}, {"n": "Tom Bergman", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 19}, {"n": "Gal Mor", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 18}, {"n": "Roni Lane", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 17}, {"n": "Alex Stone", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 16}, {"n": "Jordan Park", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 15}, {"n": "Sam Bauer", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 14}, {"n": "Riley Vale", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 13}, {"n": "Taylor Katz", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 12}, {"n": "Morgan Tal", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 11}, {"n": "Casey Ross", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 10}, {"n": "Jamie Rivera", "b": "Sample profile for demo purposes only — no real member data. Works in Cybersecurity.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 9}, {"n": "Avery Cohen", "b": "Sample profile for demo purposes only — no real member data. Works in Fintech.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 8}, {"n": "Quinn Frost", "b": "Sample profile for demo purposes only — no real member data. Works in AI / ML.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 7}, {"n": "Dana Sharon", "b": "Sample profile for demo purposes only — no real member data. Works in Healthcare.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 6}, {"n": "Reese Levi", "b": "Sample profile for demo purposes only — no real member data. Works in Climate / CleanTech.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 5}, {"n": "Noa Shaw", "b": "Sample profile for demo purposes only — no real member data. Works in Enterprise Software.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 4}, {"n": "Eli Field", "b": "Sample profile for demo purposes only — no real member data. Works in Semiconductors.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 3}, {"n": "Maya Klein", "b": "Sample profile for demo purposes only — no real member data. Works in Consumer.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 2}, {"n": "Lior Adler", "b": "Sample profile for demo purposes only — no real member data. Works in Data Infrastructure.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 1}];
+const MEMBERS=[{"n": "Alex Stone", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 36}, {"n": "Jordan Park", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 35}, {"n": "Sam Bauer", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 34}, {"n": "Riley Vale", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Healthcare"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 33}, {"n": "Taylor Katz", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 32}, {"n": "Morgan Tal", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 31}, {"n": "Casey Ross", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 30}, {"n": "Jamie Rivera", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 29}, {"n": "Avery Cohen", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 28}, {"n": "Quinn Frost", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 27}, {"n": "Dana Sharon", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 26}, {"n": "Reese Levi", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 25}, {"n": "Noa Shaw", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 24}, {"n": "Eli Field", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 23}, {"n": "Maya Klein", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 22}, {"n": "Lior Adler", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 21}, {"n": "Adi Nash", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 20}, {"n": "Tom Bergman", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 19}, {"n": "Gal Mor", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 18}, {"n": "Roni Lane", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 17}, {"n": "Alex Stone", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 16}, {"n": "Jordan Park", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 15}, {"n": "Sam Bauer", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 14}, {"n": "Riley Vale", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 13}, {"n": "Taylor Katz", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 2", "co": "Northwind Labs", "orgs": ["Northwind Labs", "Google"], "title": "Managing Partner, Northwind Labs", "former": "Former Microsoft", "score": 12}, {"n": "Morgan Tal", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 2b", "co": "Vega Systems", "orgs": ["Vega Systems", "NVIDIA"], "title": "Founder & CEO, Vega Systems", "former": "Former Amazon", "score": 11}, {"n": "Casey Ross", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "Fund 3", "co": "Atlas AI", "orgs": ["Atlas AI", "Microsoft"], "title": "VP, Atlas AI", "former": "Former Intel", "score": 10}, {"n": "Jamie Rivera", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Cybersecurity"], "fund": "", "co": "Helio Health", "orgs": ["Helio Health", "Amazon"], "title": "Managing Partner, Helio Health", "former": "Former Salesforce", "score": 9}, {"n": "Avery Cohen", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Fintech"], "fund": "Fund 2", "co": "Terra Climate", "orgs": ["Terra Climate", "Intel"], "title": "Founder & CEO, Terra Climate", "former": "Former Google", "score": 8}, {"n": "Quinn Frost", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["AI / ML"], "fund": "Fund 2b", "co": "Orbit Software", "orgs": ["Orbit Software", "Salesforce"], "title": "VP, Orbit Software", "former": "Former NVIDIA", "score": 7}, {"n": "Dana Sharon", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Healthcare"], "fund": "Fund 3", "co": "Lumen Semis", "orgs": ["Lumen Semis", "Google"], "title": "Managing Partner, Lumen Semis", "former": "Former Microsoft", "score": 6}, {"n": "Reese Levi", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Climate / CleanTech"], "fund": "", "co": "Cobalt Capital", "orgs": ["Cobalt Capital", "NVIDIA"], "title": "Founder & CEO, Cobalt Capital", "former": "Former Amazon", "score": 5}, {"n": "Noa Shaw", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Enterprise Software"], "fund": "Fund 2", "co": "Summit Ventures", "orgs": ["Summit Ventures", "Microsoft"], "title": "VP, Summit Ventures", "former": "Former Intel", "score": 4}, {"n": "Eli Field", "b": "Sample profile for demo.", "pos": "Investor", "sec": ["Semiconductors"], "fund": "Fund 2b", "co": "Pioneer Partners", "orgs": ["Pioneer Partners", "Amazon"], "title": "Managing Partner, Pioneer Partners", "former": "Former Salesforce", "score": 3}, {"n": "Maya Klein", "b": "Sample profile for demo.", "pos": "Founder / CEO", "sec": ["Consumer"], "fund": "Fund 3", "co": "Beacon Security", "orgs": ["Beacon Security", "Intel"], "title": "Founder & CEO, Beacon Security", "former": "Former Google", "score": 2}, {"n": "Lior Adler", "b": "Sample profile for demo.", "pos": "C-Level / Exec", "sec": ["Data Infrastructure"], "fund": "", "co": "Quanta Data", "orgs": ["Quanta Data", "Salesforce"], "title": "VP, Quanta Data", "former": "Former NVIDIA", "score": 1}];
 MEMBERS.forEach(m=>{m.name=m.n;});
 const NGOS=[
  {name:"Jewish Community Endowment Fund of San Francisco",cause:"Community Development",what:"Endows the long-term future of the SF Bay Area Jewish community; over $2B in assets.",help:"Planned giving, board service, and connecting philanthropic families.",web:"https://jewishfed.org",loc:"San Francisco",member:"Laura Lauder",role:"Former Chair"},
@@ -399,7 +450,7 @@ const NGOS=[
  {name:"Gideon Hausner Jewish Day School",cause:"Education",what:"K-8 Jewish day school in the Bay Area.",help:"Donate, mentor, or support scholarships.",web:"https://www.hausner.com",loc:"Palo Alto, CA",member:"Wendy Allyn",role:"Former Board President"}
 ];
 const CAUSE_COLORS={"Poverty & Welfare":"#e8833a","Health":"#e0584f","Equality & Human Rights":"#d65a9a","Education":"#3a78c9","Environment":"#37a85b","Children & Youth":"#e0bd4a","Community Development":"#2aa6a0","Religion & Heritage":"#8a63c9","Arts & Culture":"#3ab0c9","Emergency & Relief":"#7a8699","Other":"#9aa6b5"};
-const KLUB=[{name:"Sample K.",age:27,city:"Tel Aviv",field:"Product",bio:"Demo J-KLUB profile.",open:"Networking",parentMember:"A member",li:"#",cohort:3}];
+const KLUB=[{name:"Sample K.",age:27,city:"TLV",field:"Product",bio:"Demo.",open:"Networking",parentMember:"A member",li:"#",cohort:3}];
 const TEAM=[
  {g:"GP & Investment Committee",n:"Jim Koshland",role:"Co-Founder & Chairman",b:"Past Partner, DLA Piper. Board: Levi's, Launch Media. Investor in PlayStudios (Nasdaq). LP in Sequoia, August Capital, Maven. Past President of the Jewish Federation in SF, former Chairman of Berkeley Foundation ($4.8B), Strategic Council for the Dean of Stanford Law School; Board of Trustees, UC Berkeley Foundation."},
  {g:"GP & Investment Committee",n:"Oded Hermoni",role:"Co-Founder & Managing Partner, J-Ventures Group & J-Impact",b:"Past Partner at Rhodium Ventures, Co-Founder and Head of IATI (Israeli High Tech and VC Association), VP of Capital Point, Founder of TopIdea (acquired by YellowPages Group). Co-Founder and former Board Member of Shomrim, Board Member JFCS, Board of The Business School of Hebrew University, former Board of Jewish Federation SF, ICON, INTRO, Forward Association."},
@@ -431,11 +482,11 @@ const JOBS=[
  {role:"Customer Success Lead",company:"Duda",source:"Portfolio",type:"Full-time",loc:"Remote (US)",skill:"SaaS CS, web platforms",link:"#"},
  {role:"Frontend Engineer (React)",company:"RiseUp",source:"Network",type:"Contract",loc:"Tel Aviv",skill:"React, fintech, RTL",link:"#"}
 ];
-const PENDING=[{name:"Sample Applicant",email:"applicant@example.com",funds:["Fund 2"],li:"#",status:"Pending"}];
-const CELEBR=[{icon:"&#127881;",who:"A member",label:"Good news",detail:"sample celebration"}];
-const MNEWS=[{who:"A member",type:"Press",h:"Sample member news item",p:"Demo content only.",d:"2026"}];
+const PENDING=[{name:"Sample Applicant",email:"a@example.com",funds:["Fund 2"],li:"#",status:"Pending"}];
+const CELEBR=[{icon:"&#127881;",who:"A member",label:"Good news",detail:"sample"}];
+const MNEWS=[{who:"A member",type:"Press",h:"Sample",p:"Demo.",d:"2026"}];
 const CHANNELS=["# general","# intros","# deal-flow","# cyber","# health-tech","# fund-3-lps","# j-klub"];
-const CHAT={"# general":[{who:"A member",t:"Welcome to the demo Lounge.",ago:"1h"}]};
+const CHAT={"# general":[{who:"A member",t:"Welcome.",ago:"1h"}]};
 let curChan="# general";
 const TRENDING=["#cybersecurity","#fintech","#agritech","#exit_strategy","#secondary_market","#ai_governance"];
 const EVENTS=[
@@ -532,21 +583,23 @@ function renderJobs(){
   if(q&&!((j.role+' '+j.company+' '+j.skill+' '+j.loc).toLowerCase().includes(q)))return false;return true;});
  document.getElementById('jCount').textContent=list.length+" of "+JOBS.length+" roles";
  document.getElementById('jGrid').innerHTML=list.map(j=>{const col=SRC_COL[j.source]||'#2a6f97';
-  return `<div class="card" style="cursor:default"><div class="row1"><div class="avatar" style="background:${col};border-radius:12px">${j.company[0]}</div>
-   <div><h3>${j.role}</h3><div class="pos" style="color:${col}">${j.company}</div></div></div>
-   <div class="meta-line"><b>&#128205; ${j.loc}</b> &middot; ${j.type}</div>
-   <div class="meta-line">${j.skill}</div>
-   <div class="tags"><span class="tag" style="background:${col}1f;color:${col}">${j.source}</span>
-   <a class="tag fund" href="${j.link}" onclick="alert('In the live site: opens the role / warm intro.');return false;">Apply &#8599;</a></div></div>`;
+  const dom=ORG_DOMAIN[j.company];const logo=dom?`<img src="https://logo.clearbit.com/${dom}" loading="lazy" onerror="this.style.display='none';this.parentNode.textContent='${(j.company[0]||'').replace(/'/g,'')}'" style="width:24px;height:24px;border-radius:5px"/>`:(j.company[0]||'');
+  const feat=j.source==='J-Ventures'?'<span class="jfeat">FEATURED</span>':'';
+  return `<div class="jobcard"><div class="jobtop"><div class="joblogo" style="background:${col}1f;color:${col}">${logo}</div>${feat}</div>
+   <div class="jobrole">${j.role}</div><div class="jobco">${j.company}</div>
+   <div class="jobmeta">&#128205; ${j.loc} &middot; ${j.type}</div>
+   <div class="jobskill">${j.skill}</div>
+   <div class="jobfoot"><span class="tag" style="background:${col}1f;color:${col}">${j.source}</span>
+   <button class="jobview" onclick="alert('In the live site: opens the role / warm intro.')">View details &#8599;</button></div></div>`;
  }).join('')||`<p style="color:var(--muted)">No roles match these filters.</p>`;
 }
 /* ---------- AI Concierge (client-side smart match; production uses live Claude) ---------- */
 const SYN={vc:["venture","investor","capital"],ai:["artificial intelligence","machine learning","ml"],cyber:["cybersecurity","security"],health:["healthcare","medical","biotech"],fintech:["finance","payments","banking"],bay:["california","silicon valley","palo alto","san francisco","menlo"],nyc:["new york"],israel:["tel aviv","israeli"],intro:[],raise:["fund","invest"],exit:["acquired","sold","ipo"]};
-const STOP=new Set("a an the to of in for with who can me my i and or at on is be need looking want help".split(" "));
+const STOP=new Set("a an the to of in for with who can me my i and or at on is be need looking want help expert experts find get someone people anyone good great".split(" "));
 // typo auto-correction against the directory's own vocabulary
-const VOCAB=[...new Set([...Object.keys(ORG_DOMAIN).map(s=>s.toLowerCase()),'linkedin','cybersecurity','security','fintech','healthcare','medical','semiconductor','semiconductors','founder','investor','venture','ventures','partner','engineer','climate','cleantech','israel','israeli','boston','york','francisco','seed','series','exit','acquired'])];
+const VOCAB=[...new Set([...Object.keys(ORG_DOMAIN).map(s=>s.toLowerCase()),'linkedin','cyber','cybersecurity','security','fintech','healthcare','medical','semiconductor','semiconductors','founder','investor','venture','ventures','partner','engineer','climate','cleantech','israel','israeli','boston','york','francisco','seed','series','exit','acquired'])];
 function lev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
-function correctTok(t){if(t.length<4)return t;if(VOCAB.indexOf(t)>=0)return t;let best=t,bd=99;for(const w of VOCAB){if(Math.abs(w.length-t.length)>2)continue;const dd=lev(t,w);if(dd<bd){bd=dd;best=w;}}return bd<=2?best:t;}
+function correctTok(t){if(t.length<5)return t;if(VOCAB.indexOf(t)>=0)return t;let best=t,bd=99;for(const w of VOCAB){if(Math.abs(w.length-t.length)>1)continue;const dd=lev(t,w);if(dd<bd){bd=dd;best=w;}}return bd<=1?best:t;}
 function aiAsk(q){document.getElementById('aiQ').value=q;aiSearch();}
 function aiSearch(){
  const raw=document.getElementById('aiQ').value.trim();const box=document.getElementById('aiResults');
@@ -583,19 +636,23 @@ function filteredMembers(){
   if(q&&!((m.n+' '+m.b+' '+m.sec.join(' ')+' '+m.fund+' '+(m.orgs||[]).join(' ')).toLowerCase().includes(q)))return false;
   return true;});
 }
+function waMember(name){alert("In the live site this opens a WhatsApp chat with "+name+" (their number comes from their member profile). For now, requests route through the J-Ventures community line.");}
 function renderMembers(){
  const list=filteredMembers();
  document.getElementById('mCount').textContent=list.length+" of "+MEMBERS.length+" members";
+ const goldCut=([...MEMBERS].sort((a,b)=>(b.score||0)-(a.score||0))[Math.min(11,MEMBERS.length-1)]||{}).score||0;
  document.getElementById('mGrid').innerHTML=list.map(m=>{
-  const i=MEMBERS.indexOf(m);
+  const i=MEMBERS.indexOf(m);const gold=goldCut>0&&(m.score||0)>=goldCut;
+  const fn=(m.n.split(' ')[0]||'').replace(/[^A-Za-z]/g,'');
   const posTag=`<span class="tag" style="background:#eaf4fb;color:var(--brand);font-weight:700">${m.pos}</span>`;
   const tags=posTag+m.sec.slice(0,3).map(x=>`<span class="tag">${x}</span>`).join('');
   const cos=orgLabels(m.orgs,4);
-  return `<div class="card" onclick="openMember(${i})"><div class="row1"><div class="avatar" style="background:${avColor(m.n)}">${initials(m.n)}</div>
-   <div><h3>${m.n}</h3><div class="curtitle" style="margin-top:3px">${m.title||m.pos}</div></div></div>
+  return `<div class="card${gold?' goldcard':''}" onclick="openMember(${i})"><div class="row1"><div class="avatar${gold?' goldav':''}" style="background:${avColor(m.n)}">${initials(m.n)}</div>
+   <div style="flex:1"><h3>${m.n}${gold?' <span class="goldbadge" title="Top member">&#11088;</span>':''}</h3><div class="curtitle" style="margin-top:3px">${m.title||m.pos}</div></div></div>
    ${m.former?`<div class="fmrtitle">${m.former}</div>`:''}
    ${cos?`<div class="cos">${cos}</div>`:''}
-   <div class="tags">${tags}</div></div>`;
+   <div class="tags">${tags}</div>
+   <div class="cardact"><button class="wabtn-mini" onclick="event.stopPropagation();waMember('${fn}')">&#128241; WhatsApp</button><button class="viewbtn-mini" onclick="event.stopPropagation();openMember(${i})">View profile</button></div></div>`;
  }).join('')||`<p style="color:var(--muted)">No members match these filters.</p>`;
  document.getElementById('mMore').innerHTML='';
 }
@@ -691,30 +748,41 @@ function renderConnections(i){
 }
 /* ---------- LP Reports (fund-gated) ---------- */
 const LP_REPORTS={
- f2:[{t:"Fund II — Q4 2025 LP Report",d:"Quarterly performance, NAV, TVPI / DPI, and portfolio company updates.",date:"Jan 2026"},
-     {t:"Fund II — 2025 Annual Letter",d:"GP letter, strategy review, and outlook for the coming year.",date:"Jan 2026"},
-     {t:"Fund II — Capital Account Statement",d:"Your capital account, contributions, and distributions to date.",date:"Q4 2025"},
-     {t:"Fund II — Audited Financials 2025",d:"Year-end audited financial statements.",date:"Mar 2026"}],
- f3:[{t:"Fund III — Q4 2025 LP Report",d:"Quarterly performance, NAV, TVPI / DPI, and portfolio company updates.",date:"Jan 2026"},
-     {t:"Fund III — 2025 Annual Letter",d:"GP letter, strategy review, and outlook for the coming year.",date:"Jan 2026"},
-     {t:"Fund III — Capital Call Notice",d:"Latest capital call schedule and wiring instructions.",date:"Feb 2026"},
-     {t:"Fund III — Portfolio Deep Dive",d:"Company-by-company review of the Fund III portfolio.",date:"Q4 2025"}]
+ f2:[{t:"Fund II — Q4 2025 Performance Report",cat:"Quarterly",d:"Quarterly fund performance, NAV, and portfolio company updates.",date:"Jan 2026",size:"PDF · 3.2 MB",latest:true},
+     {t:"Fund II — 2025 Annual Letter",cat:"Quarterly",d:"GP letter, strategy review, and outlook for the coming year.",date:"Jan 2026",size:"PDF · 1.1 MB"},
+     {t:"Fund II — 2025 Schedule K-1",cat:"Tax",d:"Final tax documentation for your Fund II position.",date:"Mar 2026",size:"PDF · 0.4 MB"},
+     {t:"Fund II — Capital Account Statement",cat:"Quarterly",d:"Your capital account, contributions, and distributions to date.",date:"Q4 2025",size:"PDF · 0.6 MB"},
+     {t:"Fund II — Audited Financials 2025",cat:"Quarterly",d:"Year-end audited financial statements.",date:"Mar 2026",size:"PDF · 2.5 MB"}],
+ f3:[{t:"Fund III — Q4 2025 Performance Report",cat:"Quarterly",d:"Quarterly fund performance, NAV, and portfolio company updates.",date:"Jan 2026",size:"PDF · 3.0 MB",latest:true},
+     {t:"Fund III — 2025 Annual Letter",cat:"Quarterly",d:"GP letter, strategy review, and outlook for the coming year.",date:"Jan 2026",size:"PDF · 1.0 MB"},
+     {t:"Fund III — Capital Call Notice #4",cat:"Call",d:"Latest capital call schedule and wiring instructions.",date:"Feb 2026",size:"PDF · 0.3 MB"},
+     {t:"Fund III — 2025 Schedule K-1",cat:"Tax",d:"Final tax documentation for your Fund III position.",date:"Mar 2026",size:"PDF · 0.4 MB"},
+     {t:"Fund III — Portfolio Deep Dive",cat:"Quarterly",d:"Company-by-company review of the Fund III portfolio.",date:"Q4 2025",size:"PDF · 4.2 MB"}]
 };
-function fundCard(r,col,tag,unlocked){
- return `<div class="lpcard${unlocked?'':' locked'}"><div class="lpicon">${unlocked?'&#128202;':'&#128274;'}</div>
-  <div style="flex:1"><div style="font-weight:700">${r.t} <span class="fundtag" style="background:${col}1f;color:${col}">${tag}</span></div>
-  <div style="font-size:12.5px;color:var(--muted);margin-top:2px">${r.d} &middot; ${r.date}</div></div>
-  ${unlocked?`<button class="lpbtn" onclick="alert('In the live site this opens the secure PDF / data room.')">Open</button>`:`<button class="lpbtn lock">&#128274; Restricted</button>`}</div>`;
+let lpFilter='All';
+const LP_CATS=[['All','All Reports'],['Quarterly','Quarterly Updates'],['Tax','Tax Documents (K-1)'],['Call','Call Notices']];
+function lpSetFilter(c){lpFilter=c;renderLP();}
+function docCard(r,col){const tag=r.latest?'<span class="doctag latest">LATEST</span>':`<span class="doctag" style="background:${col}1f;color:${col}">${r.cat}</span>`;
+ return `<div class="doccard"><div class="docrow"><div class="docicon" style="background:${col}1f;color:${col}">&#128196;</div>${tag}</div>`+
+  `<div class="doctitle">${r.t}</div><div class="docdesc">${r.d}</div>`+
+  `<div class="docfoot"><span class="docsize">${r.size} &middot; ${r.date}</span><button class="docview" onclick="alert('In the live site this opens the secure PDF / data room.')">View &#8599;</button></div></div>`;}
+function fundSection(list,col,tag,unlocked){
+ if(!unlocked)return `<div class="cause-h"><span class="dot" style="background:${col}"></span>${tag} &mdash; restricted</div><div class="doclocked"><div class="lpicon">&#128274;</div><div><b>${tag} reports are restricted.</b><div style="font-size:12.5px;color:var(--muted)">Your account isn't a ${tag} LP. Contact the team if this is a mistake.</div></div></div>`;
+ const docs=list.filter(r=>lpFilter==='All'||r.cat===lpFilter);
+ const cards=docs.length?docs.map(r=>docCard(r,col)).join(''):'<div style="color:var(--muted);font-size:13px;padding:6px 2px">No documents in this category.</div>';
+ return `<div class="cause-h"><span class="dot" style="background:${col}"></span>${tag}</div><div class="docgrid">${cards}</div>`;
 }
 function renderLP(){
  const a=window.ACCESS||'none';const seeF2=(a==='all'||a==='f2');const seeF3=(a==='all'||a==='f3');
  const note={all:"GP / team view — you can see Fund II and Fund III.",f2:"Fund II LP — you can see Fund II reports only.",f3:"Fund III LP — you can see Fund III reports only.",none:"You don't have LP access. Contact the team if this is a mistake."}[a];
  document.getElementById('lpAccessNote').textContent=note;
- let html='';
- html+=`<div class="cause-h"><span class="dot" style="background:#29ABE2"></span>Fund II${seeF2?'':' — restricted'}</div>`;
- html+= seeF2 ? LP_REPORTS.f2.map(r=>fundCard(r,'#29ABE2','Fund II',true)).join('') : `<div class="lpcard locked"><div class="lpicon">&#128274;</div><div style="flex:1"><b>Fund II reports are restricted to Fund II LPs.</b><div style="font-size:12.5px;color:var(--muted)">Your account isn't a Fund II LP.</div></div><button class="lpbtn lock">&#128274; Restricted</button></div>`;
- html+=`<div class="cause-h" style="margin-top:20px"><span class="dot" style="background:#1B8DBE"></span>Fund III${seeF3?'':' — restricted'}</div>`;
- html+= seeF3 ? LP_REPORTS.f3.map(r=>fundCard(r,'#1B8DBE','Fund III',true)).join('') : `<div class="lpcard locked"><div class="lpicon">&#128274;</div><div style="flex:1"><b>Fund III reports are restricted to Fund III LPs.</b><div style="font-size:12.5px;color:var(--muted)">Your account isn't a Fund III LP.</div></div><button class="lpbtn lock">&#128274; Restricted</button></div>`;
+ const chips=LP_CATS.map(([c,l])=>`<button class="lpchip${lpFilter===c?' on':''}" onclick="lpSetFilter('${c}')">${l}</button>`).join('');
+ let html=`<div class="lpbar"><div class="lpchips">${chips}</div><button class="lpexport" onclick="alert('In the live site this exports a combined PDF summary of your accessible reports.')">&#11015; Export summary</button></div>`;
+ html+=`<h3 class="lpsec">Recent documents</h3>`;
+ html+=fundSection(LP_REPORTS.f2,'#29ABE2','Fund II',seeF2);
+ html+=`<div style="height:16px"></div>`+fundSection(LP_REPORTS.f3,'#1B8DBE','Fund III',seeF3);
+ html+=`<div class="lpextra"><div class="lprequest"><div class="lpicon" style="background:#f0f3f8">&#128193;</div><div style="flex:1"><b>Need older reports?</b><div style="font-size:12.5px;color:var(--muted)">Archives from earlier vintages are available on request.</div></div><button class="docview" onclick="alert('In the live site this requests archive access from the GP.')">Request access</button></div>`+
+  `<div class="lpsupport"><b>&#128172; LP Support</b><div style="font-size:12.5px;color:#cbd8e6;margin:3px 0 9px">Need help understanding your reports or tax documents?</div><button class="docview" onclick="window.location.href='mailto:admin@j-ventures.com?subject=LP%20Support'">Message the GP</button></div></div>`;
  document.getElementById('lpWrap').innerHTML=html;
 }
 /* ---------- LP access request (pre-login) ---------- */
@@ -835,8 +903,7 @@ function renderMNews(){
  const q=(document.getElementById('mnSearch').value||'').toLowerCase();const ty=document.getElementById('mnType').value;
  const list=MNEWS.filter(x=>{if(ty&&x.type!==ty)return false;if(q&&!((x.who+' '+x.h+' '+x.p).toLowerCase().includes(q)))return false;return true;});
  document.getElementById('mnCount').textContent=list.length+" items";
- document.getElementById('mnWrap').innerHTML=list.map(x=>`<div class="news-item"><div class="avatar" style="background:${avColor(x.who)};width:46px;height:46px;flex:none">${initials(x.who)}</div>
-  <div><span class="pill">${x.type}</span> <span style="font-size:12px;color:var(--muted)">${x.d}</span><h3>${x.who} &mdash; ${x.h}</h3><p>${x.p}</p></div></div>`).join('')||`<p style="color:var(--muted)">No items match.</p>`;
+ document.getElementById('mnWrap').innerHTML='<div class="mngrid">'+list.map(x=>`<div class="mncard"><div class="mntop"><div class="avatar" style="background:${avColor(x.who)}">${initials(x.who)}</div><div style="flex:1"><div class="mnwho">${x.who}</div><div class="mndate">${x.d}</div></div><span class="mntype">${x.type}</span></div><div class="mnh">${x.h}</div><div class="mnp">${x.p}</div></div>`).join('')+'</div>'||`<p style="color:var(--muted)">No items match.</p>`;
 }
 function renderLounge(){
  const sel=document.getElementById('chanSelect');if(!sel)return;
