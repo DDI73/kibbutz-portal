@@ -119,7 +119,8 @@ main{max-width:1180px;margin:0 auto;padding:24px 22px 60px}
 #loungeDock.open{transform:none}
 .newsbar{position:static;z-index:19;overflow:hidden;background:#0f2f44;color:#fff;height:36px;display:flex;align-items:center;white-space:nowrap}
 .newsbar .label{background:var(--brand);color:#fff;font-weight:800;font-size:11px;letter-spacing:.5px;padding:0 12px;align-self:stretch;display:flex;align-items:center;flex:none;text-transform:uppercase}
-.newsbar .track{display:inline-flex;gap:36px;padding-left:24px;animation:ticker 45s linear infinite}
+.newsbar .track{display:inline-flex;gap:36px;padding-left:24px;animation:ticker 90s linear infinite}
+.newsbar:hover .track{animation-play-state:paused}
 .newsbar:hover .track{animation-play-state:paused}
 .newsbar .ti{font-size:13px;color:#dbe7f0}.newsbar .ti b{color:var(--gold2);font-weight:700}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -144,7 +145,12 @@ main{max-width:1180px;margin:0 auto;padding:24px 22px 60px}
 .chatinput button{background:var(--brand);color:#fff;border:none;padding:0 18px;border-radius:9px;font-weight:700;cursor:pointer}
 .footer-note{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
 @media(max-width:600px){.chanlist{width:130px}}
-@media(max-width:600px){.count{width:100%;margin-left:0}header.top{height:auto;padding:8px 14px;flex-wrap:wrap}}
+@media(max-width:600px){.count{width:100%;margin-left:0}header.top{height:auto;padding:8px 14px;flex-wrap:wrap;row-gap:6px}
+ nav.tabs{order:5;flex:1 0 100%;margin-left:0;margin-top:4px;gap:2px;-webkit-overflow-scrolling:touch;padding:2px 0;scroll-snap-type:x proximity}
+ nav.tabs button{padding:9px 13px;font-size:14px;scroll-snap-align:start}
+ nav.tabs button.active{box-shadow:0 0 0 2px rgba(41,171,226,.25)}
+ .newsbar .track{animation-duration:120s}
+ .jvname{font-size:16px}.jvtag{font-size:9px;letter-spacing:2px}}
 #loungeToggle,#loungeDock{display:none!important}
 @media(min-width:1100px){main{margin-right:auto!important}.newsbar,.footer-note{margin-right:0!important}}
 .lng-wrap{display:grid;grid-template-columns:210px 1fr 280px;gap:14px;align-items:start}
@@ -852,7 +858,7 @@ function renderLP(){
  html+=fundSection(LP_REPORTS.f2,'#29ABE2','Fund II',seeF2);
  html+=`<div style="height:16px"></div>`+fundSection(LP_REPORTS.f3,'#1B8DBE','Fund III',seeF3);
  html+=`<div class="lpextra"><div class="lprequest"><div class="lpicon" style="background:#f0f3f8">&#128193;</div><div style="flex:1"><b>Need older reports?</b><div style="font-size:12.5px;color:var(--muted)">Archives from earlier vintages are available on request.</div></div><button class="docview" onclick="alert('In the live site this requests archive access from the GP.')">Request access</button></div>`+
-  `<div class="lpsupport"><b>&#128172; LP Support</b><div style="font-size:12.5px;color:#cbd8e6;margin:3px 0 9px">Need help understanding your reports or tax documents?</div><button class="docview" onclick="window.location.href='mailto:admin@j-ventures.com?subject=LP%20Support'">Message the GP</button></div></div>`;
+  `<div class="lpsupport"><b>&#128172; LP Support</b><div style="font-size:12.5px;color:#cbd8e6;margin:3px 0 9px">Need help understanding your reports or tax documents?</div><button class="docview" onclick="window.open('mailto:admin@j-ventures.com?subject=LP%20Support','_blank')">Message the GP</button></div></div>`;
  document.getElementById('lpWrap').innerHTML=html;
 }
 /* ---------- LP access request (pre-login) ---------- */
@@ -888,7 +894,7 @@ function submitRegister(){
  const nm=v('rName'),em=v('rEmail'); if(!nm||!em){alert('Please add your name and email.');return;}
  const funds=[document.getElementById('rF2').checked?'Fund 2':'',document.getElementById('rF2b').checked?'Fund 2b':'',document.getElementById('rF3').checked?'Fund 3':''].filter(Boolean).join(', ')||'(none selected)';
  const body=`Name: ${nm}%0D%0AEmail: ${em}%0D%0AFunds (self-reported): ${funds}%0D%0ALinkedIn: ${v('rLi')}`;
- window.location.href=`mailto:${LP_EMAIL}?subject=${encodeURIComponent('Portal access request: '+nm)}&body=${body}`;
+ window.open(`mailto:${LP_EMAIL}?subject=${encodeURIComponent('Portal access request: '+nm)}&body=${body}`,'_blank');
  document.getElementById('modalMount').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="mbody" style="text-align:center;padding:34px">
   <div style="font-size:40px">&#9989;</div><h3 style="margin:10px 0 6px">Request sent</h3>
   <p style="color:var(--muted);font-size:14px">Thanks, ${nm}. The J-Ventures team will verify your fund access and send your private login.</p>
@@ -918,7 +924,7 @@ function submitDeal(){
  const g=id=>(document.getElementById(id).value||'').trim();
  const co=g('dCo'); if(!co){alert('Please add a company name.');return;}
  const body=`Company: ${co}%0D%0AWebsite: ${g('dWeb')}%0D%0AOne-liner: ${g('dOne')}%0D%0AFounders: ${g('dFnd')}%0D%0ASector: ${g('dSec')}%0D%0AStage/Round: ${g('dStg')}%0D%0AWhy interesting: ${g('dWhy')}%0D%0APitch deck: ${g('dDeck')}%0D%0ASubmitted by: ${g('dBy')}`;
- window.location.href=`mailto:${DEAL_EMAIL}?subject=${encodeURIComponent('Deal Flow submission: '+co)}&body=${body}`;
+ window.open(`mailto:${DEAL_EMAIL}?subject=${encodeURIComponent('Deal Flow submission: '+co)}&body=${body}`,'_blank');
  document.getElementById('modalMount').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="mbody" style="text-align:center;padding:34px">
   <div style="font-size:40px">&#9989;</div><h3 style="margin:10px 0 6px">Thanks &mdash; sent to Deal Flow</h3>
   <p style="color:var(--muted);font-size:14px">${co} is on its way to the J-Ventures deal team. They review every member-sourced deal.</p>
@@ -989,7 +995,7 @@ function setLoungeContext(tab){const sel=document.getElementById('chanSelect');c
  if(tab==='jklub'){curChan='# j-klub';sel.disabled=true;title.innerHTML='&#128101; J-KLUB chat';}
  else{sel.disabled=false;title.innerHTML='&#128172; The Lounge';}
  renderLounge();}
-function shareSimcha(){window.location.href='mailto:admin@j-ventures.com?subject='+encodeURIComponent('Good news to share with the Kibbutz')+'&body='+encodeURIComponent('Share a birthday, wedding/simcha, new role, baby, or milestone for the community:\n\nWho:\nWhat:\nDate:');}
+function shareSimcha(){window.open('mailto:admin@j-ventures.com?subject='+encodeURIComponent('Good news to share with the Kibbutz')+'&body='+encodeURIComponent('Share a birthday, wedding/simcha, new role, baby, or milestone for the community:\n\nWho:\nWhat:\nDate:'),'_blank');}
 function renderTicker(){
  const cel=CELEBR.map(c=>`<span class="ti">${c.icon} <b>${c.who}</b> ${c.label}${c.detail?': '+c.detail:''}</span>`);
  const nws=NEWS.map(n=>`<span class="ti"><b>${n.tag}</b> &middot; ${n.h}</span>`);
@@ -1095,7 +1101,7 @@ function buildPod(){const co=document.getElementById('ddName').value;const sec=d
  out.innerHTML=`<div class="net-count">Suggested pod for ${lbl}${sec?' in '+sec:''}</div>`+(scored.map(x=>{const m=MEMBERS[x.i];
   const why=[(sec&&(m.sec||[]).includes(sec))?sec+' expertise':'',(m.title||m.pos||'')].filter(Boolean).join(' · ');
   const body=encodeURIComponent('Hi '+m.n.split(' ')[0]+", we're looking at "+(co||'a company')+' and would value your input on '+lbl+'. Could we grab 20 minutes?');
-  return netItem(x.i,why,'Request input',`window.location.href='mailto:?subject=${encodeURIComponent('Kibbutz: input on '+(co||'a company'))}&body=${body}'`);}).join('')||'<p style="color:var(--muted);font-size:12px">No strong matches — broaden the sector.</p>');}
+  return netItem(x.i,why,'Request input',`window.open('mailto:?subject=${encodeURIComponent('Kibbutz: input on '+(co||'a company'))}&body=${body}','_blank')`);}).join('')||'<p style="color:var(--muted);font-size:12px">No strong matches — broaden the sector.</p>');}
 function renderNetwork(){if(!GRAPH.length)buildGraph();
  const ds=document.getElementById('ddSec');if(ds&&ds.options.length<2){const secs=[...new Set(MEMBERS.flatMap(m=>m.sec||[]))].sort();ds.innerHTML='<option value="">Sector…</option>'+secs.map(s=>`<option>${s}</option>`).join('');}
  const sup=MEMBERS.map((m,i)=>({i,d:GRAPH[i].length})).sort((a,b)=>b.d-a.d).slice(0,6);
