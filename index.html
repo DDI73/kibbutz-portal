@@ -455,6 +455,20 @@ async function applyLiveUpdates(){
    changed++;
   });
   if(changed){try{renderMembers();}catch(e){}try{renderStats();}catch(e){}try{renderTeam();}catch(e){}}
+  // ---- News live from Community News ----
+  if(d.news&&d.news.length){
+   const MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+   NEWS.length=0;
+   d.news.forEach(n=>{let dd="",mm="";if(n.date){const p=(""+n.date).split("-");if(p.length===3){dd=p[2];mm=MO[(+p[1]||1)-1]||"";}}
+    NEWS.push({d:dd,m:mm,tag:n.category||"News",h:n.title,p:n.summary,url:n.url||""});});
+   try{renderNews();}catch(e){}
+  }
+  // ---- Jobs live from Job Board ----
+  if(d.jobs&&d.jobs.length){
+   JOBS.length=0;
+   d.jobs.forEach(j=>JOBS.push({role:j.role,company:j.company,source:j.source||"Network",type:j.type||"Full-time",loc:j.loc||"",skill:j.skill||"",link:j.link||"#"}));
+   try{renderJobs();}catch(e){}
+  }
  }catch(e){/* offline / feed down: baked directory stays intact */}
 }
 MEMBERS.forEach(m=>{m.name=m.n;});
