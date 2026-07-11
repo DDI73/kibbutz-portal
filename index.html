@@ -299,7 +299,7 @@ Continue with Google</button>
 <button data-tab="approvals" id="navApprovals" onclick="go('approvals')" style="display:none">Approvals</button></nav>
 <div class="whoami">
 <div class="av" id="meAv">M</div><span id="meName">Member</span>
-<button class="logout" onclick="openEdit()" style="border-color:var(--brand);color:var(--brand)">Edit my profile</button>
+<button class="logout" onclick="window.open('https://airtable.com/appH0W4uj2e1H5DrM/pagaRzWVscQiabyUi/form','_blank')" style="border-color:var(--brand);color:var(--brand)">Edit my profile</button>
 <button class="logout" onclick="logout()">Log out</button></div></header>
 <div class="newsbar" id="newsBar"></div>
 <main>
@@ -366,7 +366,7 @@ Continue with Google</button>
 <div class="page-head"><h2>Job Board <span style="font-size:14px;color:var(--gold);font-weight:700">&middot; J-Ventures &amp; beyond</span></h2>
 <p>Roles across the portfolio and the wider Kibbutz network. Members and their kids get a warm intro.</p></div>
 <div class="banner gold"><span>&#128188;</span><div><b>Post a role.</b> Members can list open positions at their company &mdash; portfolio or not. Sample listings shown below.
-<button class="addbtn" style="margin-top:8px" onclick="alert('In the live site this opens the post-a-job form.')">+ Post a job</button></div></div>
+<button class="addbtn" style="margin-top:8px" onclick="window.open('https://airtable.com/appH0W4uj2e1H5DrM/pagwXWdEgTwPkaH6m/form','_blank')">+ Post a job</button></div></div>
 <div class="filters"><input type="text" id="jSearch" placeholder="Search role, company, skill..." oninput="renderJobs()"/>
 <select id="jSource" onchange="renderJobs()"><option value="">All Sources</option></select>
 <select id="jType" onchange="renderJobs()"><option value="">All Types</option></select>
@@ -1110,4 +1110,6 @@ function renderNetwork(){if(!GRAPH.length)buildGraph();
  const gaps=Object.entries(bySec).sort((a,b)=>a[1]-b[1]).slice(0,8);
  document.getElementById('gapOut').innerHTML='<div class="net-tagrow">'+gaps.map(([s,n])=>`<span class="lng-tag">${s} &middot; ${n}</span>`).join('')+'</div><p style="color:var(--muted);font-size:12px;margin-top:8px">Thinnest sectors &mdash; good targets for new members or imports.</p>';}
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!document.getElementById('login').classList.contains('hidden'))login();});
+/* Embedded behind the Wix Members gate -> skip the portal's own demo login (single sign-in, no double screen). */
+if(window.top!==window.self){try{login();}catch(e){}}
 </script></body></html>
